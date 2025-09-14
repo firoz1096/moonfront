@@ -1,0 +1,101 @@
+@media only screen and (max-width: 992px) { 
+    .hide_mobile {
+      display: none!important;
+    }
+  }
+  
+  
+  @media only screen and (min-width: 992px) { 
+    .hide_desktop {
+      display: none!important;
+    }
+  }
+
+
+  .btn-primary {
+    background-color: $pr-base!important;
+    border-color: $pr-base!important;
+  }
+ 
+
+  .fa_icon {
+    font-family: "Font Awesome 5 Free";    
+    font-weight: 900;
+    vertical-align: middle;
+    }
+
+
+
+body .text-primary {
+  color: $pr-base!important;;
+}
+
+
+
+
+  .dbl_heading_section { 
+
+    .hdsub_title {
+        text-align: center;
+        color: $se-base;
+        font-size: 0.9rem;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .hd_title {
+
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 800;
+        color:#333333;
+
+        @media only screen and (max-width: 992px) { 
+          font-size: 1.3rem;
+
+        }
+    }
+
+
+}
+
+.trim_text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+  
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.form-check-input { 
+
+border: solid 1px $pr-base!important;
+  
+
+  &:checked {
+    background-color: $pr-base!important;
+    border-color: $pr-base!important;
+    box-shadow: none!important;
+
+
+  }
+}
+
+.shadow {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.step_card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+     transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+

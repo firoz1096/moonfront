@@ -1,0 +1,458 @@
+.search_panel_block {
+
+.nav-tabs {
+  border: none;
+
+  .nav-item {
+
+    .nav-link {
+      color: $light-base;
+      font-size: 1.2rem;
+      font-weight: 600;
+        border: none;
+      &:hover {
+        border: none;
+      }
+
+    }
+
+    .nav-link.active {
+      color: $pr-base
+    }
+   
+  }
+}
+
+.tab-content {
+background-color: $light-base;
+padding: 1rem;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;
+border-color: #ccc;
+
+}
+
+.field_section {
+  border: solid 1px #ccc;
+  border-right: none;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+
+  @media only screen and (max-width: 992px) { 
+   border-radius: 0px;
+   border: none;
+  }
+
+  .field_box {
+  border-right: solid 1px #ccc;
+  position: relative;
+  display: block;
+  padding: 0.5rem 1rem;
+  line-height: normal;
+  cursor: pointer;
+   height: 96px;
+
+    @media only screen and (max-width: 992px) { 
+   border-radius: 0;
+   border-top:solid 1px #ccc;
+   border-left:solid 1px #ccc;
+  }
+
+
+    &:hover {
+      background-color: $se-base;
+    }
+
+  .title {
+    font-size: 14px;
+    color: #4a4a4a;
+    padding: 3px 0 2px 0;
+  }
+
+  .fieldfirst {
+    font-size: 1.6rem;
+    font-weight: 700;
+    .fieldsecond {
+    font-size: 1.1rem;
+    font-weight: 500;
+    }
+  }
+
+  .fieldlast {
+     font-size: 13px;
+     padding-bottom: 6px;
+     @extend .trim_text;
+  }
+
+.oneWayPickerLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: #9b9b9b;
+}
+
+.airport_return {
+ @media only screen and (min-width: 992px) { 
+   padding-left: 1.1rem;
+ }
+ 
+}
+}
+
+.active_state {
+  background-color: $se-base;
+}
+
+.btn_wrap {
+  height: 94px;
+
+    @media only screen and (max-width: 992px) { 
+    height: 60px;
+    border-radius: 10px;
+    margin: 1rem 0;
+    }
+    
+  position: relative;
+
+    .btn_search {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $pr-base;
+    border: none;
+    color: $light-base;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 0;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+
+    @media only screen and (max-width: 992px) { 
+    border-radius: 0;
+    }
+
+  }
+}
+
+
+}
+
+  .switch_destination {
+      button {
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      border: solid 1px #ccc;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      z-index: 7;
+      position: absolute;         
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      svg {
+      color: $pr-base;
+      }
+
+      }
+  }
+
+}
+
+.input_search_field {
+
+ width: 100%;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-weight: 500;
+  background-color: white;
+  background-image: url('../images/pngicons/search.png');
+  background-size: 20px;
+  background-position: 10px center; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+
+}
+
+
+.panel_bg_utility {
+  background-color: white;
+  padding: 1rem;
+  position: absolute;
+  width: 340px;
+  top: 1.5rem;
+  border-radius: 4px;
+  z-index: 8;
+  border: solid 1px #ccc;
+
+  @media only screen and (max-width: 992px) { 
+    width: 100%;
+    }
+  @extend .shadow;
+
+}
+
+.airport_list_suggestion{
+  @extend .panel_bg_utility;
+
+  .list_show {
+  max-height: 200px;
+  overflow-y: auto;
+
+    ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    li {
+      display: block;
+      cursor: pointer;
+      padding: 5px;
+
+      &:hover {
+        background-color: $se-base;
+      }
+    }
+    
+  }
+  }
+
+  .city_code {
+   
+    b {
+        font-weight: 500;
+        color: #747474;
+        font-size: 90%;
+    }
+
+  }
+
+.airport_name {
+    p {
+        margin: 0;
+        padding: 0;
+        font-size: 13px;
+    }
+}
+
+
+}
+
+.calendar_display {
+ @extend .panel_bg_utility;
+
+}
+
+
+.adult_pax_section {
+
+  .pax_title {
+    font-size: 15px;
+  }
+  .pax_age {
+    font-size: 13px;
+    color:#767676
+
+  }
+
+  .pax_icon {
+    svg {
+      font-size: 2rem;
+      
+    }
+  }
+}
+
+.form_booking_details {
+  padding: 3rem 0;
+  background-image: url('../images/wallpaper/hotel-wallpaper.jpg');
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+
+  .fbd_fields {
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    padding: 1.5rem;
+    // background-color: rgba(255, 255, 255, 0.9);
+    background-color: $light-base;
+
+    .form-control {
+
+     border: solid 1px #ccc;
+      background-color: $light-base;
+      font-weight: 500;
+      color: #4a4a4a;
+      padding: 0.6rem 0.75rem;
+
+      &:focus {
+        box-shadow: none;
+        border-color: $pr-base;
+      }
+    }
+
+    .btn-lg {
+
+      height: 50px;
+      margin: 1rem 0;
+      border: none;
+
+         &:focus {
+        box-shadow: none;
+        border-color: $pr-base;
+      }
+    }
+
+    b {
+      font-weight: 500;
+    }
+
+
+
+  }
+
+
+
+}
+
+
+.feautured_flight_deals {
+
+  h2, h5, h1 {
+    font-weight: 700;
+  }
+    
+  .stretched-link {
+   text-decoration: none;
+   font-weight: 600;
+   color: $pr-base;
+  }
+
+
+.noOfDays {
+  position: relative;
+  display: block;
+  background-color: #1e2f5d;
+  margin: -30px 0 20px 0;
+  padding: 6px 0;
+
+  svg {
+    margin-bottom: 3px;
+  }
+
+}
+
+  .nav-tabs {
+    border: none;
+    display: flex;
+    justify-content: center;
+
+    .nav-item {
+      margin: 10px 6px;
+    
+    .nav-link {
+        color: $dark-base;
+        background-color: $se-base;
+        border-radius: 6px;
+       font-weight: 500;
+       display: inline-block;
+       
+        @include media-breakpoint-up(lg) { 
+        padding: 12px 1.7rem;      
+        }
+
+        &:hover {
+          background-color: $pr-base;
+          color: $light-base;
+        }
+      }
+
+      .nav-link.active {
+        
+          background-color: $pr-base;
+          color: $light-base;
+      }
+
+    }
+  
+  }
+   
+}
+
+   .fbd_fields_ad {
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    padding: 0.6rem 1.5rem;
+    background-color: $light-base;
+
+    img {
+     height: 50px;
+     margin-right: 10px;
+    }
+
+    .rt_title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: normal;
+    }
+   }
+
+.flight_deals_section {
+
+  .deal_title, .deal_price { 
+    font-weight: 600;
+
+  }
+
+  .deal_link { 
+    color: $pr-base; 
+    text-decoration: none;
+
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+   }
+
+
+   .rt_deal {
+    display: block;
+    color: $dark-base;
+    text-decoration: none;
+    background-color: $light-base;
+    margin: 0 0 10px 0;
+    
+    &:hover {
+      text-decoration: none;
+      background-color: $pr-base;
+      color: $light-base;
+      border-radius: 10px;
+    }
+
+   }
+}
+
+
+.inner_half_banner {
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   height: 200px;
+  
+  .wrapper {
+    background: rgba(57, 56, 56, .7);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+}
+
+

@@ -1,0 +1,85 @@
+.main_header {
+
+  background-color:$light-base;
+  padding: 8px 0; 
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 6;
+ 
+    .logo {
+        height: 54px;
+
+         @include media-breakpoint-down(md) { 
+        height: 44px;
+         }
+    }
+
+
+    .menu_bar {
+        font-size: 1.5rem;
+        color: $dark-base;
+        border: none;
+        background-color: transparent;
+        box-shadow: none;
+        display: none;
+        @include media-breakpoint-down(md) { 
+            display: block;
+         }
+
+   
+    }
+
+}
+
+
+
+
+.showMenuinMobile { 
+    display: block!important;
+}
+
+.overlay_body {
+    @include media-breakpoint-down(md) { 
+       overflow: hidden;
+    }
+
+
+}
+
+
+.scrolled {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+//   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+//   backdrop-filter: blur(10px);
+  animation: slideDown 0.55s ease-out;
+
+
+  .navbar_collapse {
+    top: 54px;
+
+}
+
+}
+
+@keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+
+    // 0%   {transform: translateY(-100%);}
+    // 25%  {transform: translateY(-75%);}
+    // 50%  {transform: translateY(-50%);}
+    // 75%  { transform: translateY(-25%);}
+    // 100% {  transform: translateY(0);}
+
+
+  }
+
+  

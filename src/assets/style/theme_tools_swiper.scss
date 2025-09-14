@@ -1,0 +1,45 @@
+
+.tools_we_use_section {
+
+
+
+
+    h5 {
+        font-weight: 600;
+        font-size: 1.2em;
+    }
+
+
+    .box {
+        display: block;
+        text-align: center;
+
+        
+        svg {
+            font-size: 2rem;
+            border-radius: 6px;
+            -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        }
+
+    }
+
+
+
+    .swiper-button-prev:after, .swiper-button-next:after {
+        font-size: 1rem;
+        color: $pr-base;
+    }
+
+    .swiper-button-prev, .swiper-rtl .swiper-button-next {
+
+        left: 0px;
+    }
+
+    .swiper-button-next, .swiper-rtl .swiper-button-prev {
+        right: 0px;
+    }
+
+
+}

@@ -1,0 +1,16 @@
+.price-range-list {
+    .price-range-item {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          color: #1565c0;
+        }
+
+        &.active {
+        background-color: $se-base;
+        color: #1565c0;
+        }
+    }
+}

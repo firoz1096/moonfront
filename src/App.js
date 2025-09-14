@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import '../src/custom.scss';
+import MainLayout from "./components/MainLayout";
+import SwiperSlider from "./components/SwiperSlider";
+// import ToolsSlider from "./components/ToolsSlider";
+import WhyBookWithUs from './components/WhyBookWithUs';
+import FeatureFlightDeals from './components/FeatureFlightDeals';
+import GoogleReviewsWidget from './components/GoogleReview';
+import HowItWorks from './components/HowItWorks';
+import RoundTripDeals from './components/RoundTripDeals';
+import FeaturedHolidayDeals from './components/FeaturedHolidayDeals';
+import StatsSection from './components/StatsSection';
+import SubscribeSection from './components/SubscribeSection';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+<>
+
+      <MainLayout>
+      <SwiperSlider/>
+      <WhyBookWithUs/>
+      <FeatureFlightDeals/>
+      <FeaturedHolidayDeals/>
+      <HowItWorks/>
+      <RoundTripDeals/>
+       <StatsSection/>
+       <SubscribeSection/>
+      <GoogleReviewsWidget/>
+       
+      {/* <ToolsSlider/> */}
+      </MainLayout>
+
+      </>
+
+
     </div>
   );
 }

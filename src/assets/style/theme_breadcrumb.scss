@@ -1,0 +1,59 @@
+
+
+.breadcrumb_area {
+    background-position: center center;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    background-size: cover;
+    z-index: 3;
+    position: relative;
+    background-image: url(../images/breadcumb.jpg);
+
+    &:before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: rgba(4, 4, 4, 0.7);
+        z-index: -1;
+    }
+
+
+    .breadcrumb_title {
+        color: $light-base;
+        font-weight: 700;
+        font-size: 3.2rem;
+    }
+
+    .breadcrumb_list {
+        margin-top: 20px;
+
+        li {
+        display: inline-block;
+        text-transform: uppercase;
+        color: #fff;
+        font-size: 0.9rem;
+
+        &:before {
+            float: left;
+            padding: 0 0.3rem;
+            color: #fff;
+            content: ('/');
+        }
+
+       &:first-child:before {
+            content: '';
+        }
+
+        a {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        }
+    }
+}
+

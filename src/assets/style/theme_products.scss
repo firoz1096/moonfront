@@ -1,0 +1,134 @@
+
+
+.product_section {
+
+
+    .products_wrapper {
+
+        background-color: $light-base;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 16px;
+        padding: 1rem 1.5rem;
+        display: block;
+        // border: solid 1px #ccc;
+        margin: 1rem 0;
+    
+        .icon_holder {
+            margin: 1rem 0 1.2rem 0;
+
+            img {
+                height: 60px;
+            }
+        }
+    
+        .title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $dark-base;
+            margin: 0.5rem 0;
+        }
+    
+        .description {
+            p {
+            color: #505050;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            }
+        }
+    
+        .readmore {
+            
+            margin: 0.8rem 0 0.5rem  0;
+    
+            a {
+                color: $se-base;
+                font-size: 0.9rem;
+                font-weight: 600;
+                text-decoration: none;
+                position: relative;
+    
+                &:hover {
+                    color: $se-base; 
+                    // padding-right: 16px; 
+                    
+                    // &:after {
+          
+                    //     @extend .fa_icon;
+                    //     content: "\f101";
+                    //     position: absolute;
+                    //     right: 0px ;
+                    //     top: 50%;
+                    //     transform: translate(0, -50%);
+                
+                    //   }
+                }
+            }
+        }
+
+
+    }
+
+
+}
+
+
+.popular_technologies {
+
+    h1 {
+
+        font-weight: 600;
+    }
+
+    a {
+        text-decoration: none;
+        display: block;
+
+        .technology_wrapper {
+
+            background-color: $light-base;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 4px 16px;
+            padding: 1rem 1.5rem;
+            display: block;
+            margin: 1rem 0;
+            
+            svg {
+                font-size: 2.5rem;
+                color: $se-base;
+            }
+        
+            h2 {
+                font-weight: 600;
+                color: $dark-base;
+                margin: 0.5rem 0 0.5rem 0.5rem;
+            }
+        
+            .description {
+                p {
+                color: #505050;
+                margin: 0.5rem 0;
+                font-size: 1rem;
+                }
+            }
+        
+     
+    
+    
+        }  
+
+        &:hover {
+
+          .technology_wrapper { 
+            background-color: $dark-base;
+
+
+            h2 {
+
+                color: $light-base;
+            }
+
+          }
+        }
+
+    }
+
+    
+}

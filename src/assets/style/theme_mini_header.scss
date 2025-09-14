@@ -1,0 +1,20 @@
+.mini_header {
+    background-color: $dark-base;
+    font-size: 0.9rem; 
+    display: block;
+    position: relative;   
+ 
+
+    a {
+        color: $light-base;
+        display: inline-block;
+        padding: 5px 15px;
+        text-decoration: none;
+        
+
+        &:hover {
+            background-color: #000;
+        }
+
+    }
+}

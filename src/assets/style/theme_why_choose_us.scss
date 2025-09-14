@@ -1,0 +1,125 @@
+
+.why_choose_section {
+
+
+.iconpic {
+img {
+    margin-right: 0.8rem;
+   height: 60px;
+
+}
+
+}
+
+.description {
+
+
+    h5 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $dark-base;
+        margin: 0.5rem 0;
+
+    }
+
+    p {
+
+        color: #505050;
+        margin: 1rem 0;
+        margin: 0.5rem 0;
+    }     
+}
+    
+
+}
+
+
+
+
+.lets_discuss_projects {
+
+        .call-to-action {
+            background: url(../images/hero-bg.png) center left;
+            background-size: cover;
+            padding: 150px 0px;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+            background-attachment: fixed;
+
+
+            &:before {
+                 content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                top: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background: #000000;
+                z-index: 0;
+                opacity: 0.6;         
+            }
+        
+
+    
+
+            h1 {
+                font-weight: 700;
+                font-size: 2rem;
+  
+            }
+    
+            h1, 
+            p
+             {
+                color: $light-base;
+                text-align: center; 
+                max-width: 70%;
+                margin: auto; 
+                margin-bottom: 1rem;
+                position: relative;
+                z-index: 100;
+                
+                @media only screen and (max-width: 767px) {  
+                    max-width: 100%;
+                }
+    
+    
+    
+    
+            }
+        
+            .contact_us {
+                display: inline-block;
+                background-color: $pr-base;
+                color: $light-base;
+                text-decoration: none;
+                border: none;
+                font-size: 1rem;
+                font-weight: 400;
+                padding: 0.5rem 1rem;
+                position: relative;
+                z-index: 100;
+                
+                @media only screen and (max-width: 576px) { 
+                  font-size: 90%;
+                }
+        
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: $pr-base;
+                }
+        
+              }
+    
+ 
+    
+    
+        }
+
+
+}
+

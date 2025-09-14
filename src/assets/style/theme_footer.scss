@@ -1,0 +1,110 @@
+
+.footer_section {
+    background-color: $dark-base;
+    padding: 2.2rem 0 1rem 0;
+    // margin-top: 5rem;
+
+    hr {
+
+        color: white;
+    }
+
+    h6 {
+        color: $light-base;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    ul {
+
+        margin: 0;
+        padding: 0;
+
+        li {
+
+            list-style-type: none;
+            display: block;
+            margin: 12px 0;
+            color: $light-base;
+            font-size: 0.9rem;
+
+            a {
+
+                color: $light-base;
+                text-decoration: none;
+                font-size: 0.9rem;
+                display: inline-block;
+           
+                &:hover {
+
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    a {
+
+        color: $light-base;
+        text-decoration: none;
+        font-size: 0.9rem;
+        display: inline-block;
+   
+        &:hover {
+
+            text-decoration: underline;
+        }
+    }
+
+    .newsletter {
+        background-color: $light-base;
+        display: inline-block;
+        padding: 4px;
+        border-radius: 6px;
+
+        input {
+           height: 36px;
+           border: none;
+           outline: none;
+           box-shadow: none;
+           
+
+        }
+
+        .btn_news {
+            height: 36px;
+            background-color: $se-base;
+            color: $light-base;
+            border: none;
+            border-radius: 6px;
+            svg {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    .copyright {
+        color: $light-base;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    .social_icons {
+
+        a {
+            font-size: 1.3rem;
+            margin: 0 1rem 0 0;
+            color: $light-base;
+            opacity: 0.8;
+
+
+            &:hover {
+
+                opacity: 1;   
+            }
+        }
+    }
+
+
+}
