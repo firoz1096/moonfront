@@ -15,6 +15,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
+
 export default function FlightDealDetails() {
   const { id } = useParams();
   const [deal, setDeal] = useState(null);
@@ -44,7 +47,7 @@ export default function FlightDealDetails() {
   useEffect(() => {
     const fetchDeal = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/round-trip-flight-deals/${id}`);
+        const res = await axios.get(`${API_BASE}/round-trip-deals/${id}`);
         setDeal(res.data);
 
         //get values from API for from and to destination.
@@ -166,7 +169,7 @@ const validateForm = () => {
     setThankMessage(false);
 
     try {
-      await axios.post("http://localhost:5000/post-flight-enquiry", formData);
+      await axios.post(`${API_BASE}/flight-enquiry`, formData);
      
      //It clears only the input fields that the user typed manually (name, email, phone, message).
       setFormData(prev => ({

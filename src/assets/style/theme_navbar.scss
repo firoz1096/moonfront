@@ -33,7 +33,7 @@
         display: inline;
         margin: 0 0 0 2rem;
         position: relative;
-          font-weight: 500;
+         font-size: 1.1rem;
 
         @media (max-width: 768px) { 
             display: block;
@@ -54,14 +54,15 @@
             display: inline-block;
             color:$dark-base;
             text-decoration: none;
-        
-            font-size: 1rem;
+            font-size: 1.1rem;
+            padding: 4px 0;
 
             @media (max-width: 768px) { 
                 display: block;
                 color: $dark-base;
                 padding: 0.5rem 1rem;
-                font-size: 1.2rem;
+                font-weight: 600;
+               
               
             }
 
@@ -257,4 +258,23 @@ border-radius: 14px;
 
 }
 
+
+
+.h_icon {
+margin-right: 2px;
+color: $dark-base;
+height: 20px;
+}
+
+
+
+.nav_item.active a {
+  color: $pr-base!important;   /* highlight color */
+   border-bottom: solid 3px $pr-base;
+}
+
+.nav_item.active a .h_icon {
+  color: $pr-base!important;   /* highlight icon */  
+ 
+}
 

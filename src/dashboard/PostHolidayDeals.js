@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import MainLayout from "../components/MainLayout";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import JoditEditor from "jodit-react"; 
 import UploadImage from "../multer/UploadImage";
 import UploadMultipleImages from "../multer/UploadMultipleImages";
 import CountryCitySelect from "../components/CountryCitySelect";
 import Select from "react-select";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
+
 export default function PostHolidayDeals() {
+
+//jodit editor config and refs
+const editorConfig = {
+  height: 300,
+};
+const overviewRef = useRef(null);
+const termsRef = useRef(null);
+
 
 const [errors, setErrors] = useState({});
 
@@ -41,16 +51,13 @@ const categoryOptions = [
     gallery: [],
   });
 
+
   // Regular text inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // React Quill editor
-  const handleQuillChange = (field, value) => {
-    setFormData({ ...formData, [field]: value });
-  };
 
   // Arrays (inclusions / exclusions)
   const handleArrayChange = (e, field, index) => {
@@ -78,7 +85,7 @@ const handleGalleryUpload = (imagePaths) => {
 
 
 
-  // --- Validation function ---
+// --- Validation function ---
 const validateForm = () => {
   let newErrors = {};
 
@@ -117,7 +124,7 @@ const handleSubmit = async (e) => {
       noOfDays: Number(formData.noOfDays),
     };
 
-    await axios.post("http://localhost:5000/api/holiday-deals", payload);
+    await axios.post(`${API_BASE}/holiday-deals`, payload);
     alert("✅ Holiday Deal Created!");
 
     setFormData({
@@ -231,7 +238,7 @@ const handleSubmit = async (e) => {
       {formData.thumbnail && (
         <div className="mt-2">
           <img
-           src={`http://localhost:5000${formData.thumbnail}`} 
+            src={`${IMAGE_BASE}${formData.thumbnail}`}
          
             alt="Thumbnail"
             style={{ width: "80px", height: "60px", objectFit: "cover" }}
@@ -252,7 +259,7 @@ const handleSubmit = async (e) => {
           {formData.gallery.map((img, i) => (
             <img
               key={i}
-             src={`http://localhost:5000${img}`} 
+             src={`${IMAGE_BASE}${img}`} 
               alt={`Gallery ${i}`}
               style={{ width: "80px", height: "60px", objectFit: "cover" }}
             />
@@ -322,11 +329,11 @@ const handleSubmit = async (e) => {
     {/* Overview */}
     <div className="col-md-12 mb-3">
       <label className="form-label">Overview</label>
-      <ReactQuill
-        theme="snow"
+      <JoditEditor
+        ref={overviewRef}
         value={formData.overview}
-        onChange={(value) => handleQuillChange("overview", value)}
-        style={{ height: "150px", marginBottom: "50px" }}
+        config={editorConfig}
+        onBlur={(newContent) => setFormData({ ...formData, overview: newContent })}
       />
       {errors.overview && <small className="text-danger">{errors.overview}</small>}
     </div>
@@ -334,11 +341,13 @@ const handleSubmit = async (e) => {
     {/* Terms & Conditions */}
     <div className="col-md-12 mb-3">
       <label className="form-label">Terms & Conditions</label>
-      <ReactQuill
-        theme="snow"
+      <JoditEditor
+        ref={termsRef}
         value={formData.termsConditions}
-        onChange={(value) => handleQuillChange("termsConditions", value)}
-        style={{ height: "150px", marginBottom: "50px" }}
+        config={editorConfig}
+        onBlur={(newContent) =>
+          setFormData({ ...formData, termsConditions: newContent })
+        }
       />
       {errors.termsConditions && (
         <small className="text-danger">{errors.termsConditions}</small>

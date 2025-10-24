@@ -2,15 +2,12 @@ import MainLayout from '../components/MainLayout';
 import contactbg from '../assets/images/contact-us-bg.jpg';
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import Spinner from "../components/Spinner";
-import { useAuth } from "../auth/AuthContext";
 import { Link } from 'react-router-dom';
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function TermConditions() {
-
-const { user } = useAuth(); // from AuthProvider
 
 const [termInfo, setTermInfo] = useState(null);
 const [loading, setLoading] = useState(true);
@@ -19,7 +16,7 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
   const fetchTermInfo = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/terms-info");
+      const res = await axios.get(`${API_BASE}/terms-info`);
       setTermInfo(res.data);
     } catch (err) {
       console.error("Error fetching term and condition info:", err);
@@ -61,13 +58,7 @@ useEffect(() => {
 
             </div>
 
-            {user && (
-        <div className="text-end mt-4">
-          <Link className="btn btn-warning" to="/edit-terms-and-conditions">
-            Edit
-          </Link>
-        </div>
-      )}
+
                 <div className="container mt-5 mb-5">
       
 

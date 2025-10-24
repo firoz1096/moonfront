@@ -1,3 +1,4 @@
+import MainLayout from "../components/MainLayout";
 import { useState } from "react";
 import { PiArrowsLeftRight } from "react-icons/pi";
 import dayjs from 'dayjs';
@@ -8,7 +9,7 @@ import SearchAirline from "../components/controls/SelectAirline";
 import { TbHandFingerDown } from "react-icons/tb";
 import UploadImage from "../multer/UploadImage";
 import axios from "axios";
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 
 export default function PostFlightDeals() {
@@ -104,7 +105,7 @@ const handleFlightDeals = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/post-flight-deals",
+      `${API_BASE}/flight-deals`,
       payload,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -125,268 +126,266 @@ const handleFlightDeals = async (e) => {
 
 
   return (
-    
-    <> 
+  <> 
+    <MainLayout>
+      <div className='search_panel_block'>
+       <div className="container py-5">
 
-<div className='search_panel_block mt-5'>
-<div className="container">
+      <h4 className="mb-3">Create Featured Flight Deal</h4>
 
-<h3 className="mb-4">Create Featured Flight Deal</h3>
-
-  <div className='row align-items-center'>
+      <div className='row align-items-center'>
 
       <div className='col-lg-6 mb-3'>
 
-        <div className="d-flex align-items-center">
-          <div className="me-2">
-            <label htmlFor="country" >Select a Country / Region</label>
-          </div>
-          <div>
-            <select
-                id="country"
-                className="form-select"
-                value={country}
-                onChange={(e) => setCountry(e.target.value)}
-              >
-                <option value="">Select</option>
-                <option value="India">India</option>
-                <option value="Pakistan">Pakistan</option>
-                <option value="Gulf Countries">Gulf Countries</option>
-              </select>
-             </div> 
-        </div>
-           
-             
-              
+      <div className="d-flex align-items-center">
+      <div className="me-2">
+      <label htmlFor="country" >Select a Country / Region</label>
+      </div>
+      <div>
+      <select
+          id="country"
+          className="form-select"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="India">India</option>
+          <option value="Pakistan">Pakistan</option>
+          <option value="Gulf Countries">Gulf Countries</option>
+        </select>
+        </div> 
       </div>
 
-      
-      
-<div className='col-lg-6 mb-3'>
+        
+        
+      </div>
 
- 
 
-  <div className='flight_radio_line'>
-      
-       <div className="form-check form-check-inline">Trip Type:  </div>
-  <div className="form-check form-check-inline">
-  
-  <input 
-  className="form-check-input" type="radio" name="inlineRadioOptions"  
-  checked={status === 1} onChange={() => radioHandler(1)} 
-  id="inlineRadio1" value="Return"  
+
+      <div className='col-lg-6 mb-3'>
+
+
+
+      <div className='flight_radio_line'>
+
+      <div className="form-check form-check-inline">Trip Type:  </div>
+      <div className="form-check form-check-inline">
+
+      <input 
+      className="form-check-input" type="radio" name="inlineRadioOptions"  
+      checked={status === 1} onChange={() => radioHandler(1)} 
+      id="inlineRadio1" value="Return"  
       />
 
-  <label className="form-check-label" htmlFor="inlineRadio1">Return</label>
-
-  </div>
-
-  <div className="form-check form-check-inline">
-  <input className="form-check-input" type="radio" name="inlineRadioOptions" 
-  checked={status === 2} onChange={() => radioHandler(2)} 
-  id="inlineRadio2" value="One Way" />
-
-  <label className="form-check-label" htmlFor="inlineRadio2">One Way</label>
-  </div>
-
-
-  </div>
+      <label className="form-check-label" htmlFor="inlineRadio1">Return</label>
 
       </div>
-  </div>
 
-           
-    <div className='field_section mb-4'> 
+      <div className="form-check form-check-inline">
+      <input className="form-check-input" type="radio" name="inlineRadioOptions" 
+      checked={status === 2} onChange={() => radioHandler(2)} 
+      id="inlineRadio2" value="One Way" />
+
+      <label className="form-check-label" htmlFor="inlineRadio2">One Way</label>
+      </div>
 
 
-  <div className='row g-0 align-items-center'>
+      </div>
 
-    <div className='col-lg-6 position-relative'>
-      <span className='switch_destination'>
-        <button onClick={swapAirport}> <PiArrowsLeftRight/></button>
-      </span>
-    
-      <div className='row g-0'>
+      </div>
+      </div>
 
-       <div className='col-lg-6 position-relative'>
-           <SearchAirport
-            id="depAirport"
-            source={"From City/Airport"}
-            city={fromLocation.city}
-            citycode={fromLocation.citycode}
-            airport={fromLocation.airport}
-            styleCss={"field_box"}
-            onSelect={setFromLocation}
-           />
-      
-        </div> 
+      <div className='field_section mb-4'> 
+
+
+      <div className='row g-0 align-items-center'>
 
       <div className='col-lg-6 position-relative'>
-           <SearchAirport
-            id="arrAirport"
-            source={"To City/Airport"}
-            city={toLocation.city}
-            citycode={toLocation.citycode}
-            airport={toLocation.airport}
-            styleCss={"field_box ps-md-4"}
-            onSelect={setToLocation}
-           />
-        </div> 
-        
-        </div>  
-       
-    </div>
-
-    <div className='col-lg-3'>
+      <span className='switch_destination'>
+      <button onClick={swapAirport}> <PiArrowsLeftRight/></button>
+      </span>
 
       <div className='row g-0'>
 
-       <div className='col-lg-6 position-relative'> 
-          <SelectDate
-            source={"Starts On"}
-            date={departureDate}
-            onDateChange={(newValue) => {
-              if (newValue) {
-                setDepartureDate(newValue);
-                // Always update return date to be the next day after departure
-                const nextDay = dayjs(newValue).add(1, 'day');
-                setReturnDate(nextDay);
-              }
-            }}
-          />
-        </div> 
+      <div className='col-lg-6 position-relative'>
+      <SearchAirport
+      id="depAirport"
+      source={"From City/Airport"}
+      city={fromLocation.city}
+      citycode={fromLocation.citycode}
+      airport={fromLocation.airport}
+      styleCss={"field_box"}
+      onSelect={setFromLocation}
+      />
 
-     <div className='col-lg-6 position-relative'> 
+      </div> 
 
-    
+      <div className='col-lg-6 position-relative'>
+      <SearchAirport
+      id="arrAirport"
+      source={"To City/Airport"}
+      city={toLocation.city}
+      citycode={toLocation.citycode}
+      airport={toLocation.airport}
+      styleCss={"field_box ps-md-4"}
+      onSelect={setToLocation}
+      />
+      </div> 
+
+      </div>  
+
+      </div>
+
+      <div className='col-lg-3'>
+
+      <div className='row g-0'>
+
+      <div className='col-lg-6 position-relative'> 
       <SelectDate
-         source={"Ends On"}
-          date={returnDate}
-          onDateChange={(newValue) => {
-            if (newValue && newValue.isAfter(departureDate)) {
-              setReturnDate(newValue);
-            }
-          }}
-          />                
-                   
+      source={"Starts On"}
+      date={departureDate}
+      onDateChange={(newValue) => {
+        if (newValue) {
+          setDepartureDate(newValue);
+          // Always update return date to be the next day after departure
+          const nextDay = dayjs(newValue).add(1, 'day');
+          setReturnDate(nextDay);
+        }
+      }}
+      />
+      </div> 
+
+      <div className='col-lg-6 position-relative'> 
 
 
-</div> 
+      <SelectDate
+      source={"Ends On"}
+      date={returnDate}
+      onDateChange={(newValue) => {
+      if (newValue && newValue.isAfter(departureDate)) {
+        setReturnDate(newValue);
+      }
+      }}
+      />                
+              
 
 
-
- 
-        
-        </div>  
-       
-    </div>
-       
-
-         <div className="col-lg-3 position-relative">
-          <SearchAirline
-           id="searchAirline"
-            source={"Select Airline"}
-             airlinename={airline.airlinename} 
-             airlinecode={airline.airlinecode}
-            styleCss={"field_box"}
-            onSelect={setAirline}
-          />
-
-         </div>
+      </div> 
 
 
 
-    </div>
 
 
-    </div>
+      </div>  
 
-   <div className="row ">
-
-     <div className="col-lg-5 mb-3">
-        <div className="row"> 
-    <div className='col-lg-7 position-relative'>
-
-       <SelectClass source={"Travel Class"} onClassChange={setSelectedClass} />
-       
-    </div>
-
-    <div className='col-lg-5'> 
-         <div> Price per person</div>
-         <div className="mt-1"><input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="form-control" id="startingfrom" /></div>
-
-    </div> 
-</div>
-       </div>
- 
-       <div className="col-lg-7 mb-3">
-
-         <UploadImage source="Select an Image for To City" onUpload={setImagePath} />
+      </div>
 
 
-       </div>
+      <div className="col-lg-3 position-relative">
+      <SearchAirline
+      id="searchAirline"
+      source={"Select Airline"}
+        airlinename={airline.airlinename} 
+        airlinecode={airline.airlinecode}
+      styleCss={"field_box"}
+      onSelect={setAirline}
+      />
 
-<hr/>
-       <div className="col-lg-12 text-end">
-           <button onClick={handleFlightDeals} className="btn btn-primary"> Save Featured Flight Deals </button>
+      </div>
 
-       </div>
 
-    </div>
 
-    <div className="row">
+      </div>
 
-  <div className="col-12 mt-4"> Your selected <b>featured flight deal</b> will look like  
-    <TbHandFingerDown className="text-warning fs-5 ms-1" /></div>
-        <div className="col-lg-12">
-        
-          <table className="table">
-            <thead>
-                <tr>
-                    <th>Country</th>
-                    <th> Trip Type </th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Starts On</th>
-                    <th>Ends On</th>
-                    <th>Travel Class </th>
-                    <th>Airline </th>
-                    <th>Price </th>
-                    
-                </tr>
-            </thead>
 
-                   <tbody>
-                <tr>
-                  <td>{country ? <div>{country}</div> : <div>No Country Selected</div>}</td>
-                    <td>{status === 1 ? "Round Trip" : "One Way"}</td>
-                    <td>{fromLocation.city}, {fromLocation.citycode}</td>
-                    <td>{toLocation.city}, {toLocation.citycode}</td>
-                    <td>{departureDate.format("MMM DD")}</td>
-                    <td>{returnDate.format("MMM DD")}</td>
-                    <td>{selectedClass}</td>
-                    <td> {airline.airlinecode ?
-                    
-                    <div>{airline.airlinename}, {airline.airlinecode}</div> : 
-                    <div>No Airline Selected</div>}</td>
+      </div>
 
-                    <td> {price ?
-                    <div>{price}</div> : 
-                    <div>null</div>}
-                    </td>
-                    
-                </tr>
-            </tbody>
-          </table>
+      <div className="row ">
 
-        </div>
+      <div className="col-lg-5 mb-3">
+      <div className="row"> 
+      <div className='col-lg-7 position-relative'>
 
-   
-    </div>
+      <SelectClass source={"Travel Class"} onClassChange={setSelectedClass} />
 
-    </div>
-     </div>
-     
-</>
+      </div>
+
+      <div className='col-lg-5'> 
+      <div> Price per person</div>
+      <div className="mt-1"><input type="number" value={price} onChange={(e) => setPrice(e.target.value)} className="form-control" id="startingfrom" /></div>
+
+      </div> 
+      </div>
+      </div>
+
+      <div className="col-lg-7 mb-3">
+
+      <UploadImage source="Select an Image for To City" onUpload={setImagePath} />
+
+
+      </div>
+
+      <hr/>
+      <div className="col-lg-12 text-end">
+      <button onClick={handleFlightDeals} className="btn btn-primary"> Save Flight Deal </button>
+
+      </div>
+
+      </div>
+
+      <div className="row">
+
+      <div className="col-12 mt-4"> Your selected <b>featured flight deal</b> will look like  
+      <TbHandFingerDown className="text-warning fs-5 ms-1" /></div>
+      <div className="col-lg-12">
+
+      <table className="table">
+      <thead>
+          <tr>
+              <th>Country</th>
+              <th> Trip Type </th>
+              <th>From</th>
+              <th>To</th>
+              <th>Starts On</th>
+              <th>Ends On</th>
+              <th>Travel Class </th>
+              <th>Airline </th>
+              <th>Price </th>
+              
+          </tr>
+      </thead>
+
+              <tbody>
+          <tr>
+            <td>{country ? <div>{country}</div> : <div>No Country Selected</div>}</td>
+              <td>{status === 1 ? "Round Trip" : "One Way"}</td>
+              <td>{fromLocation.city}, {fromLocation.citycode}</td>
+              <td>{toLocation.city}, {toLocation.citycode}</td>
+              <td>{departureDate.format("MMM DD")}</td>
+              <td>{returnDate.format("MMM DD")}</td>
+              <td>{selectedClass}</td>
+              <td> {airline.airlinecode ?
+              
+              <div>{airline.airlinename}, {airline.airlinecode}</div> : 
+              <div>No Airline Selected</div>}</td>
+
+              <td> {price ?
+              <div>{price}</div> : 
+              <div>null</div>}
+              </td>
+              
+          </tr>
+      </tbody>
+      </table>
+
+      </div>
+
+
+      </div>
+
+      </div>
+      </div>
+    </MainLayout>  
+  </>
   )
 }

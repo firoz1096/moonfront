@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
+
 export default function UploadMultipleImages({ source, onUpload }) {
   const [files, setFiles] = useState([]);
   const [previews, setPreviews] = useState([]);
@@ -29,7 +31,7 @@ export default function UploadMultipleImages({ source, onUpload }) {
 
     try {
       setError("");
-      const res = await axios.post("http://localhost:5000/upload-multiple", formData, {
+      const res = await axios.post(`${IMAGE_BASE}/upload-multiple`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setSuccess("✅ Images uploaded successfully!");

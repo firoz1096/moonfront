@@ -1,10 +1,11 @@
+import MainLayout from "../components/MainLayout";
 import { useState } from "react";
 import { PiArrowsLeftRight } from "react-icons/pi";
 import SearchAirport from "../components/controls/SearchAirport";
 import { TbHandFingerDown } from "react-icons/tb";
 import axios from "axios";
 import { FaAngleRight } from "react-icons/fa";
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function PostRoundTripDeals() {
 
@@ -52,7 +53,7 @@ const handleFlightDeals = async (e) => {
   e.preventDefault();
 
     if (!country) {
-      alert("Please select a country!");
+      alert("Please select a Region!");
       return;
     }
 
@@ -84,7 +85,7 @@ const handleFlightDeals = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/post-round-trip-deals",
+      `${API_BASE}/round-trip-deals`,
       payload,
       { headers: { "Content-Type": "application/json" } }
     );
@@ -107,11 +108,11 @@ const handleFlightDeals = async (e) => {
   return (
     
     <> 
+<MainLayout>
+<div className='search_panel_block'>
+<div className="container py-5">
 
-<div className='search_panel_block mt-5'>
-<div className="container">
-
-<h3 className="mb-4">Create Round-Trip Flight Deal</h3>
+<h4 className="mb-4">Create Round-Trip Flight Deal</h4>
 
 <div className="row">
           <div className='col-lg-4 mb-3'>
@@ -235,7 +236,7 @@ const handleFlightDeals = async (e) => {
 
     </div>
      </div>
-     
+    </MainLayout>  
 </>
   )
 }

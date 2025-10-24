@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -10,13 +10,14 @@ import Modal from "react-bootstrap/Modal";
 import { AirportData } from "../data/AirportData";
 import axios from "axios";
 
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function EnquiryForm({ buttonTitle, tripName }) {
   const [modalShow, setModalShow] = useState(false);
   const [suggestions, setSuggestions] = useState([]);
 
   const [formData, setFormData] = useState({
+    destination:"",
     name: "",
     phone: "",
     email: "",
@@ -107,7 +108,7 @@ const validate = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/post-holiday-enquiry",
+        `${API_BASE}/holiday-enquiry`,
         formData
       );
 
@@ -142,7 +143,8 @@ const validate = () => {
     }
 
     setErrors({});
-    const message = `Hi, I'd like to get a quote for:
+    const message = `Hi, I'd like to get a quote 
+for: ${tripName}
 Name: ${formData.name}
 Phone: ${formData.phone}
 Email: ${formData.email}
@@ -158,7 +160,14 @@ Requirement: ${formData.requirements}`;
       `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
       "_blank"
     );
+    
   };
+
+  useEffect(() => {
+  if (tripName) {
+    setFormData((prev) => ({ ...prev, destination: tripName })); // ✅ save tripName as destination
+  }
+}, [tripName]);
 
   return (
     <>
@@ -183,6 +192,7 @@ Requirement: ${formData.requirements}`;
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <form className="row g-3" onSubmit={handleSubmit} noValidate>
                 {/* Name */}
+
                 <CustomInputField
                   label="Name"
                   name="name"

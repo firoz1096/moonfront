@@ -34,8 +34,6 @@ img {
 }
 
 
-
-
 .lets_discuss_projects {
 
         .call-to-action {
@@ -123,3 +121,188 @@ img {
 
 }
 
+
+.dashboard_links {
+  margin: 0;
+  padding: 0;
+  
+  li {
+     list-style-type: none;
+
+
+
+     ul {
+
+        margin: 0 0 1rem 0;
+        padding: 0;
+        
+        li {
+          list-style-type: none;
+          margin-left: 1rem;
+          margin-top: 0.5rem;
+          margin-bottom: 0.5rem;
+  
+          a {
+            text-decoration: none;
+            color: $dark-base;
+
+            &::before {
+              content: "☉";
+              color: $pr-base;
+              display: inline-block;
+              width: 1.3rem;
+              margin-left: -1rem;
+              font-weight: bold;
+            }
+  
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+     }
+
+    }
+}
+
+
+
+.smiley-wrapper {
+  display: inline-block;
+  line-height: 0;
+}
+
+/* subtle trembling animation */
+.smiley.sad {
+  transform-origin: 50% 50%;
+  animation: sad-shake 3s ease-in-out infinite;
+}
+
+/* face style */
+.smile-face {
+  fill: #ffd84d; /* yellow */
+  stroke: #f0b800;
+  stroke-width: 2;
+}
+
+/* eyes */
+.eye {
+  fill: #2b2b2b;
+}
+
+/* mouth sad */
+.mouth-sad {
+  stroke: #2b2b2b;
+  stroke-dasharray: 180;
+  animation: mouth-sad 3s ease-in-out infinite;
+}
+
+/* tear animation */
+.tear {
+  fill: #5dade2;
+  opacity: 0;
+  animation: tear-drop 3s ease-in-out infinite;
+}
+
+/* Keyframes */
+@keyframes sad-shake {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(1px); }
+  50% { transform: translateY(-1px); }
+  75% { transform: translateY(1px); }
+}
+
+@keyframes mouth-sad {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(2px); }
+}
+
+@keyframes tear-drop {
+  0%, 60% { opacity: 0; transform: translateY(0); }
+  65% { opacity: 1; transform: translateY(0); }
+  85% { opacity: 1; transform: translateY(12px); }
+  100% { opacity: 0; transform: translateY(16px); }
+}
+
+//
+
+.smiley-wrapper {
+  display: inline-block;
+  line-height: 0;
+}
+
+/* warning face has a pulsing orange effect */
+.smiley.warning {
+  transform-origin: 50% 50%;
+  animation: warning-pulse 1.4s ease-in-out infinite;
+}
+
+/* base face color */
+.smile-face {
+  fill: #ffcc4d; /* yellow/orange */
+  stroke: #f39c12;
+  stroke-width: 2;
+}
+
+/* eyes */
+.eye {
+  fill: #2b2b2b;
+}
+
+/* eyebrows */
+.brow {
+  fill: #2b2b2b;
+  animation: brow-raise 2s ease-in-out infinite;
+}
+
+/* mouth */
+.mouth-warning {
+  stroke: #2b2b2b;
+  animation: mouth-shake 2s ease-in-out infinite;
+}
+
+/* exclamation */
+.exclamation-line,
+.exclamation-dot {
+  stroke: #e74c3c;
+  fill: #e74c3c;
+  animation: flash 1.2s linear infinite;
+}
+
+/* Animations */
+@keyframes warning-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes brow-raise {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes mouth-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  75% { transform: translateX(1px); }
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+
+
+//currency converter
+
+.converted-amount {
+  font-size: 2rem; /* Bigger font */
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.converted-amount.change {
+  transform: scale(1.2);
+  color: #198754; /* Bootstrap success green */
+}

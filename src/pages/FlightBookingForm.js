@@ -11,6 +11,8 @@ import { useRef } from 'react';
 import { MdFlightTakeoff, MdFlightLand} from "react-icons/md";
 import RightInfoIcons from '../components/RightInfoIcons';
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
 function FlightBookingForm() {
      
 const form = useRef(); //To send email
@@ -20,10 +22,10 @@ const location = useLocation();
 
  
    const [formData, setFormData] = useState({
-    user_name: '',
-    user_email: '',
-    user_phone: '',
-    user_message: ''
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
   });
 
 
@@ -65,24 +67,24 @@ const location = useLocation();
 
     const newErrors = {};
     
-    if (!formData.user_name.trim()) {
-      newErrors.user_name = 'Name is required';
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
     }
 
-    if (!formData.user_email.trim()) {
-      newErrors.user_email = 'Email is required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.user_email)) {
-      newErrors.user_email = 'Invalid email address';
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = 'Invalid email address';
     }
 
-    if (!formData.user_phone.trim()) {
-      newErrors.user_phone = 'Phone is required';
-    } else if (!/^\+?[\d\s-()]{8,}$/.test(formData.user_phone)) {
-      newErrors.user_phone = 'Invalid phone number';
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone is required';
+    } else if (!/^\+?[\d\s-()]{8,}$/.test(formData.phone)) {
+      newErrors.phone = 'Invalid phone number';
     }
 
-    if (formData.user_message && formData.user_message.length > 500) {
-      newErrors.user_message = 'Message is too long (max 500 characters)';
+    if (formData.message && formData.message.length > 500) {
+      newErrors.message = 'Message is too long (max 500 characters)';
     }
 
     setErrors(newErrors);
@@ -119,16 +121,16 @@ const location = useLocation();
      
      // save data to API
     try {  
-      await axios.post('http://localhost:5000/post-flight-enquiry', 
+      await axios.post(`${API_BASE}/flight-enquiry`, 
         {fromDestination, toDestination, departureDate, returnDate, adult, children, infant, tripType, flightClass, name, email, phone, message}
        )
        
         // alert('Form submitted successfully!');      
         setFormData({
-          user_name: '',
-          user_email: '',
-          user_phone: '',
-          user_message: ''
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
         });
 
       
@@ -159,25 +161,47 @@ const location = useLocation();
 
   };
 
-  const handleWhatsAppQuote = () => {
-    
-if (!validateForm()) return;
+const handleWhatsAppQuote = () => {
+  if (!validateForm()) return;
 
-const message = `Hi, I'd like to get a quote for:
+  const adults = parseInt(receivedFlightParams.passengers.adult || 0, 10);
+  const children = parseInt(receivedFlightParams.passengers.child || 0, 10);
+  const infants = parseInt(receivedFlightParams.passengers.infant || 0, 10);
+
+  const travellerDetails = [];
+
+  if (adults > 0) {
+    travellerDetails.push(`${adults} ${adults > 1 ? "Adults" : "Adult"}`);
+  }
+  if (children > 0) {
+    travellerDetails.push(`${children} ${children > 1 ? "Children" : "Child"}`);
+  }
+  if (infants > 0) {
+    travellerDetails.push(`${infants} ${infants > 1 ? "Infants" : "Infant"}`);
+  }
+
+  const message = `Hi, I'd like to get a quote for:
 From: ${departureAirport}
 To: ${arrivalAirport}
 Departure: ${receivedFlightParams.departureDate}
 Return: ${receivedFlightParams.returnDate}
-Class: ${receivedFlightParams.flightClass}
+Class: ${receivedFlightParams.class}
 Trip Type: ${receivedFlightParams.tripType}
-Travellers: ${receivedFlightParams.adult + receivedFlightParams.children + receivedFlightParams.infants}
-Name: ${formData.user_name}
-Message: ${formData.user_message}`;
+Travellers: ${travellerDetails.join(", ")}
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Message: ${formData.message}`;
 
-const encodedMessage = encodeURIComponent(message);
-window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = process.env.REACT_APP_WHATSAPP_NUMBER;
+    window.open(
+      `https://wa.me/${whatsappNumber}?text=${encodedMessage}`,
+      "_blank"
+    );
 
-  };
+};
+
 
 
 
@@ -334,14 +358,14 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
 
                   <div className="col-lg-12">
                     <div className="mb-3">
-                      <label htmlFor="user_name" className="form-label">Name <span className="text-danger">*</span></label>
+                      <label htmlFor="name" className="form-label">Name <span className="text-danger">*</span></label>
                       <input 
                         placeholder='Enter your name'
                         type="text" 
                         className="form-control" 
-                        id="user_name"
-                        name="user_name"
-                        value={formData.user_name}
+                        id="name"
+                        name="name"
+                        value={formData.name}
                         required
                         aria-required="true"
                         autoComplete="name"
@@ -352,22 +376,22 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
                             setName(e.target.value);
                           }}
                                             
-                        aria-invalid={errors.user_name ? "true" : "false"}
+                        aria-invalid={errors.name ? "true" : "false"}
                       />
-                      {errors.user_name && <div className="invalid-feedback d-block">{errors.user_name}</div>}
+                      {errors.name && <div className="invalid-feedback d-block">{errors.name}</div>}
                     </div>
                   </div>
 
                   <div className="col-lg-6">
                     <div className="mb-3">
-                      <label htmlFor="user_email" className="form-label">Email <span className="text-danger">*</span></label>
+                      <label htmlFor="email" className="form-label">Email <span className="text-danger">*</span></label>
                       <input 
                         placeholder='Enter your email'
                         type="email" 
                         className="form-control" 
-                        id="user_email"
-                        name="user_email"
-                        value={formData.user_email}
+                        id="email"
+                        name="email"
+                        value={formData.email}
                         required
                         aria-required="true"
                         autoComplete="email"
@@ -377,9 +401,9 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
                             setEmail(e.target.value);
                           }}
                           
-                        aria-invalid={errors.user_email ? "true" : "false"}
+                        aria-invalid={errors.email ? "true" : "false"}
                       />
-                      {errors.user_email && <div className="invalid-feedback d-block">{errors.user_email}</div>}
+                      {errors.email && <div className="invalid-feedback d-block">{errors.email}</div>}
                     </div>
                   </div>
 
@@ -390,9 +414,9 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
                         placeholder='Enter your phone number'
                         type="tel" 
                         className="form-control" 
-                        id="user_phone"
-                        name="user_phone"
-                        value={formData.user_phone}
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
                         required
                         aria-required="true"
                         autoComplete="tel"
@@ -401,20 +425,20 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
                             handleInputChange(e);
                             setPhone(e.target.value);
                           }}
-                        aria-invalid={errors.user_phone ? "true" : "false"}
+                        aria-invalid={errors.phone ? "true" : "false"}
                       />
-                      {errors.user_phone && <div className="invalid-feedback d-block">{errors.user_phone}</div>}
+                      {errors.phone && <div className="invalid-feedback d-block">{errors.phone}</div>}
                     </div>
                   </div>
 
                   <div className="col-lg-12">
                     <div className="mb-3">
-                      <label htmlFor="user_message" className="form-label">Message</label>
+                      <label htmlFor="message" className="form-label">Message</label>
                       <textarea 
                         className="form-control" 
-                        id="user_message"
-                        name="user_message"
-                        value={formData.user_message}
+                        id="message"
+                        name="message"
+                        value={formData.message}
                         rows="3"
                         // onChange={handleInputChange}
                             onChange={(e) => {
@@ -422,9 +446,9 @@ window.open(`https://wa.me/00917275591984?text=${encodedMessage}`, '_blank');
                             setMessage(e.target.value);
                           }}
 
-                        aria-invalid={errors.user_message ? "true" : "false"}
+                        aria-invalid={errors.message ? "true" : "false"}
                       ></textarea>
-                      {errors.user_message && <div className="invalid-feedback d-block">{errors.user_message}</div>}
+                      {errors.message && <div className="invalid-feedback d-block">{errors.message}</div>}
                     </div>
                   </div>
 

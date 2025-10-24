@@ -84,7 +84,7 @@ useEffect(() => {
               
             <div className='inner_half_banner' 
                 style={{
-                backgroundImage: `url("http://localhost:5000${deal.thumbnail}")`,
+                backgroundImage: `url("${IMAGE_BASE}${deal.thumbnail}")`,
                             
             }} >
 

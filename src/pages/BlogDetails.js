@@ -3,7 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { format } from "date-fns";
 import { useAuth } from "../auth/AuthContext";
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
 export default function BlogDetails() {
 
 const { user } = useAuth(); // from AuthProvider
@@ -15,7 +16,7 @@ const { user } = useAuth(); // from AuthProvider
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/blogs/slug/${slug}`);
+        const res = await axios.get(`${API_BASE}/blogs/slug/${slug}`);
         if (res.data.success) {
           setBlog(res.data.blog);
 
@@ -23,7 +24,7 @@ const { user } = useAuth(); // from AuthProvider
           if (res.data.blog.categories?.length > 0) {
             const categoryIds = res.data.blog.categories.map((cat) => cat._id);
             const relatedRes = await axios.get(
-              `http://localhost:5000/api/blogs?categories=${categoryIds.join(",")}`
+              `${API_BASE}/blogs?categories=${categoryIds.join(",")}`
             );
             if (relatedRes.data.success) {
               // exclude the current blog from related
@@ -96,7 +97,7 @@ const { user } = useAuth(); // from AuthProvider
       {/* Cover Image */}
       {blog.coverImage && (
         <img
-          src={`http://localhost:5000${blog.coverImage}`}
+          src={`${IMAGE_BASE}${blog.coverImage}`}
           alt={blog.title}
           className="img-fluid rounded"
         />
@@ -131,7 +132,7 @@ const { user } = useAuth(); // from AuthProvider
                 <div className="card h-100 shadow-sm">
                   {related.coverImage && (
                     <img
-                      src={`http://localhost:5000${related.coverImage}`}
+                      src={`${IMAGE_BASE}${related.coverImage}`}
                       alt={related.title}
                       className="card-img-top"
                       style={{ height: "180px", objectFit: "cover" }}

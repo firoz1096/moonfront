@@ -336,7 +336,7 @@ border-color: #ccc;
 .noOfDays {
   position: relative;
   display: block;
-  background-color: #1e2f5d;
+  background-color: $pr-base;
   margin: -30px 0 20px 0;
   padding: 6px 0;
 
@@ -443,10 +443,10 @@ border-color: #ccc;
    background-size: cover;
    background-position: center;
    background-repeat: no-repeat;
-   height: 200px;
+   height: 300px;
   
   .wrapper {
-    background: rgba(57, 56, 56, .7);
+    background: rgba(2, 2, 2, 0.8);
     height: 100%;
     display: flex;
     align-items: center;

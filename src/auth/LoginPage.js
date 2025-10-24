@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 import MainLayout from '../components/MainLayout';
@@ -15,7 +15,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
-    const [loginError, setLoginError] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
   // Validate a single field
   const validateField = (name, value) => {
@@ -67,19 +67,15 @@ function LoginPage() {
 //     }
 //   };
 
+useEffect(() => {
+  if (username || password) setLoginError(false);
+}, [username, password]);
 
   return (
     <> 
       <MainLayout> 
-        <div 
-  //      style={{
-  //   backgroundImage: `url('https://images.pexels.com/photos/460672/pexels-photo-460672.jpeg')`,
-  //   backgroundPosition: "center",   
-  //   backgroundRepeat: "no-repeat", 
-  //   backgroundSize: "cover"        
-  // }}
-        
-        
+        <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }}>
+        <div   
         className="login_section">
           <div className="container">
             <div className="row justify-content-center">
@@ -102,6 +98,7 @@ function LoginPage() {
                           if (errors.username) validateField("username", e.target.value);
                         }}
                         onBlur={(e) => validateField("username", e.target.value)}
+                       autoComplete="username"
                       />
                       {errors.username && <div className="invalid-feedback">{errors.username}</div>}
                     </div>
@@ -120,6 +117,7 @@ function LoginPage() {
                           if (errors.password) validateField("password", e.target.value);
                         }}
                         onBlur={(e) => validateField("password", e.target.value)}
+                        autoComplete="current-password"   // 👈 add this
                       />
                       {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                     </div>
@@ -136,13 +134,9 @@ function LoginPage() {
                           </div>
                         </div>
                         <div className="col-6 text-end">
-                          <button 
-                            className="btn btn-primary"
-                            onClick={handleLogin}
-                          >
-                            {loading ? "Logging in..." : "Login"}
-                            
-                          </button>
+                        <button type="submit" className="btn btn-primary" disabled={loading}>
+                        {loading ? "Logging in..." : "Login"}
+                      </button>
 
                            {/* <button onClick={handleRegister}>Register</button> */}
                         </div>
@@ -155,6 +149,7 @@ function LoginPage() {
             </div>
           </div>
         </div>
+        </form>
       </MainLayout>
     </>
   );

@@ -1,11 +1,12 @@
 import{ useState, useRef } from "react";
 import axios from "axios";
 import JoditEditor from "jodit-react";
-
 import UploadImage from "../multer/UploadImage";
 import CountryCitySelect from "../components/CountryCitySelect";
 import GetBlogCategory from "../components/GetBlogCategory";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
 
 export default function PostBlog() {
   const editor = useRef(null);
@@ -107,7 +108,7 @@ export default function PostBlog() {
           : [],
       };
 
-      const res = await axios.post("http://localhost:5000/api/blogs", payload);
+      const res = await axios.post(`${API_BASE}/blogs`, payload);
       alert("Blog created successfully!");
       console.log(res.data);
 
@@ -162,20 +163,26 @@ export default function PostBlog() {
           {errors.slug && <div className="invalid-feedback">{errors.slug}</div>}
         </div>
 
-        {/* Categories */}
+
+<div className="row">
+
+<div className="col-lg-4">
+     {/* Categories */}
         <div className="mb-3">
           <label className="form-label">Select Categories</label>
-          <GetBlogCategory
-            type="dropdown"
-            multiple
-            onSelect={handleCategorySelect}
-          />
+            <GetBlogCategory
+              multiple
+              selected={formData.categories}  // Pass selected categories for controlled select
+              onSelect={handleCategorySelect}
+            />
           {errors.categories && (
             <div className="text-danger mt-1">{errors.categories}</div>
           )}
         </div>
+</div>
 
-        {/* Country & City */}
+<div className="col-lg-8">
+       {/* Country & City */}
         <div className="mb-3">
           <CountryCitySelect
             onChange={({ country, city }) =>
@@ -185,6 +192,13 @@ export default function PostBlog() {
           {errors.country && <div className="text-danger">{errors.country}</div>}
           {errors.city && <div className="text-danger">{errors.city}</div>}
         </div>
+</div>
+
+</div>
+
+   
+
+   
 
         {/* Excerpt */}
         <div className="mb-3">
@@ -204,7 +218,7 @@ export default function PostBlog() {
           {formData.coverImage && (
             <div className="mt-2">
               <img
-                src={`http://localhost:5000${formData.coverImage}`}
+                src={`${IMAGE_BASE}${formData.coverImage}`}
                 alt="Cover"
                 style={{ width: "120px", height: "80px", objectFit: "cover" }}
               />

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
 export default function EditContactInfo() {
   const [contactInfo, setContactInfo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ export default function EditContactInfo() {
   useEffect(() => {
     const fetchContactInfo = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/contact-info");
+        const res = await axios.get(`${API_BASE}/contact-info`);
         setContactInfo(res.data);
       } catch (err) {
         console.error("Error fetching contact info:", err);
@@ -27,7 +29,7 @@ export default function EditContactInfo() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/contact-info/${contactInfo._id}`,
+        `${API_BASE}/contact-info/${contactInfo._id}`,
         contactInfo
       );
       alert("Contact info updated successfully!");

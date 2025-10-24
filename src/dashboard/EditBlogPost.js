@@ -3,6 +3,7 @@ import axios from "axios";
 import GetBlogCategory from "../components/GetBlogCategory"; // updated component
 import { useParams, useNavigate } from "react-router-dom";
 import JoditEditor from "jodit-react";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function EditBlogPost() {
   const { id } = useParams();
@@ -22,7 +23,7 @@ export default function EditBlogPost() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/blogs/${id}`);
+        const res = await axios.get(`${API_BASE}/blogs/${id}`);
 
         // Adjust based on API structure: either res.data.blog or res.data
         const data = res.data.blog || res.data;
@@ -65,7 +66,7 @@ export default function EditBlogPost() {
     setError(null);
 
     try {
-      await axios.put(`http://localhost:5000/api/blogs/${id}`, blog);
+      await axios.put(`${API_BASE}/blogs/${id}`, blog);
       navigate("/blogs"); // redirect after update
     } catch (err) {
       console.error(err);
@@ -119,7 +120,8 @@ export default function EditBlogPost() {
           <GetBlogCategory
             multiple={true}
             onSelect={handleCategorySelect}
-            apiUrl="http://localhost:5000/api/categories"
+            // apiUrl="http://localhost:5000/api/categories"
+             apiUrl={`${API_BASE}/categories`}
             selected={blog.categories} // pre-select existing categories
           />
         </div>

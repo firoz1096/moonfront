@@ -1,14 +1,30 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import { City } from "country-state-city";
 
-export default function CountryCitySelect({ onChange }) {
+export default function CountryCitySelect({ onChange, defaultCountry = "", defaultCity = "" }) {
+  const countries = useMemo(() => countryList().getData(), []);
+
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedCity, setSelectedCity] = useState(null);
 
-  // Country list
-  const countries = useMemo(() => countryList().getData(), []);
+  // Initialize with defaults when editing
+  useEffect(() => {
+    if (defaultCountry) {
+      const countryOption = countries.find((c) => c.label === defaultCountry);
+      if (countryOption) {
+        setSelectedCountry(countryOption);
+        // Load default city if exists
+        if (defaultCity) {
+          const cityOption = City.getCitiesOfCountry(countryOption.value)
+            .map((c) => ({ value: c.name, label: c.name }))
+            .find((c) => c.label === defaultCity);
+          if (cityOption) setSelectedCity(cityOption);
+        }
+      }
+    }
+  }, [defaultCountry, defaultCity, countries]);
 
   // Handle country change
   const handleCountryChange = (country) => {
@@ -23,7 +39,6 @@ export default function CountryCitySelect({ onChange }) {
     if (onChange) onChange({ country: selectedCountry?.label, city: city.label });
   };
 
-  // Get cities for selected country (ISO code required by country-state-city)
   const cityOptions =
     selectedCountry
       ? City.getCitiesOfCountry(selectedCountry.value).map((c) => ({
@@ -53,7 +68,7 @@ export default function CountryCitySelect({ onChange }) {
           value={selectedCity}
           onChange={handleCityChange}
           placeholder="Select City"
-          isDisabled={!selectedCountry} // disable until country is picked
+          isDisabled={!selectedCountry}
         />
       </div>
     </div>

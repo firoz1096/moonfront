@@ -8,6 +8,8 @@ import { IoCheckmarkSharp } from "react-icons/io5";
 import { MdFlightTakeoff, MdFlightLand } from "react-icons/md";
 import RightInfoIcons from '../components/RightInfoIcons';
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
 
 export default function FlightDealDetails() {
   const { id } = useParams();
@@ -36,7 +38,7 @@ export default function FlightDealDetails() {
   useEffect(() => {
     const fetchDeal = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/flight-deals/${id}`);
+        const res = await axios.get(`${API_BASE}/flight-deals/${id}`);
         setDeal(res.data);
 
         // prefill hidden values from deal
@@ -123,7 +125,7 @@ if (!deal && !loading) return (
     setThankMessage(false);
 
     try {
-      await axios.post("http://localhost:5000/post-flight-enquiry", formData);
+      await axios.post(`${API_BASE}/post-flight-enquiry`, formData);
 
       setFormData({
         fromDestination: `${deal.fromCity.city} (${deal.fromCity.citycode})`,
@@ -453,7 +455,7 @@ Message: ${formData.message}`;
 
                 <div className="mt-3">
                   <img
-                    src={`http://localhost:5000${deal.imagePath}`}
+                    src={`${IMAGE_BASE}${deal.imagePath}`}
                     alt={`${deal.toCity.city}`}
                     className="img-fluid object-cover rounded"
                   />

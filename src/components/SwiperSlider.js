@@ -1,15 +1,11 @@
-import React from 'react'
-
 import slider from '../assets/images/slider/slider-lg.jpg';
 import slider2 from '../assets/images/slider/slider-lg2.jpg';
 import slider3 from '../assets/images/slider/slider-lg3.jpg';
 import slidermb from '../assets/images/slider/slider-mb.jpg';
 import slidermb2 from '../assets/images/slider/slider-mb2.jpg';
 import slidermb3 from '../assets/images/slider/slider-mb3.jpg';
-//
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {  Autoplay, Pagination, Navigation } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

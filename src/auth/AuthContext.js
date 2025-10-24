@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
@@ -22,16 +24,31 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user, token]);
 
+  // Login function
   const login = async (username, password) => {
-    const res = await axios.post("http://localhost:5000/api/auth/login", { username, password });
-    setUser(res.data.user);
-    setToken(res.data.token);
+    try {
+      const res = await axios.post(`${API_BASE}/auth/login`, { username, password });
+      setUser(res.data.user);
+      setToken(res.data.token);
+      return res.data;
+    } catch (err) {
+      console.error("Login failed:", err.response?.data || err.message);
+      throw err;
+    }
   };
 
-  const register = async (username, password) => {
-    await axios.post("http://localhost:5000/api/auth/register", { username, password });
+  // Register function (username + email + password)
+  const register = async (username, email, password) => {
+    try {
+      const res = await axios.post(`${API_BASE}/auth/register`, { username, email, password });
+      return res.data;
+    } catch (err) {
+      console.error("Register failed:", err.response?.data || err.message);
+      throw err;
+    }
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     setToken(null);

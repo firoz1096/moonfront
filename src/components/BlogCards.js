@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axios from "axios";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
 
 export default function BlogCards() {
   const [blogs, setBlogs] = useState([]);
@@ -8,7 +10,7 @@ export default function BlogCards() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/blogs");
+        const res = await axios.get(`${API_BASE}/blogs`);
         if (res.data.success) {
           setBlogs(res.data.blogs);
         }
@@ -26,7 +28,7 @@ export default function BlogCards() {
   }
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5 mb-5">
       <div className="row">
         {blogs.map((blog) => (
           <div key={blog._id} className="col-md-4 mb-4">
@@ -34,7 +36,8 @@ export default function BlogCards() {
               {/* Cover Image */}
               {blog.coverImage && (
                 <img
-                  src={`http://localhost:5000${blog.coverImage}`}
+                  src={`${IMAGE_BASE}${blog.coverImage}`}
+                  // src={`http://localhost:5000${blog.coverImage}`}
                   className="card-img-top"
                   alt={blog.title}
                   style={{ height: "200px", objectFit: "cover" }}

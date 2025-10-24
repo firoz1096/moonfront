@@ -10,7 +10,7 @@ import Spinner from "./Spinner";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function FooterMain() {
 
@@ -20,7 +20,7 @@ const [loading, setLoading] = useState(true);
 useEffect(() => {
   const fetchContactInfo = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contact-info");
+      const res = await axios.get(`${API_BASE}/contact-info`);
       setContactInfo(res.data);
     } catch (err) {
       console.error("Error fetching contact info:", err);

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import asia from '../assets/images/region/asia.jpg';
 import middleeast from '../assets/images/region/middle-east.jpg';
 import africa from '../assets/images/region/africa.jpg';
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function RoundTripDeals() {
   const [deals, setDeals] = useState([]);
@@ -13,7 +14,7 @@ export default function RoundTripDeals() {
   useEffect(() => {
     const fetchDeals = async () => {
       try {
-        const res = await fetch("http://localhost:5000/round-trip-flight-deals"); // your API endpoint
+        const res = await fetch(`${API_BASE}/round-trip-deals`); // your API endpoint
         const data = await res.json();
         setDeals(data);
       } catch (error) {

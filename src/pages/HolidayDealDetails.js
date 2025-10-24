@@ -7,6 +7,9 @@ import { FaLocationDot } from "react-icons/fa6";
 // import RightInfoIcons from '../components/RightInfoIcons';
 import { Spinner } from "react-bootstrap";
 import EnquiryForm from '../components/EnquiryForm';
+import CurrencyExchange from '../components/CurrencyExchange';
+
+
   // 👉 Use env vars (better than hardcoding)
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
@@ -82,7 +85,7 @@ useEffect(() => {
 
             <div className='inner_half_banner' 
                 style={{
-                backgroundImage: `url("http://localhost:5000${deal.thumbnail}")`,
+                backgroundImage: `url("${IMAGE_BASE}${deal.thumbnail}")`,
                             
             }} >
 
@@ -170,11 +173,14 @@ useEffect(() => {
                     <Spinner animation="border" size="sm" />
                   )}
                 </div>
+            
+
+             <div className="card shadow-sm p-3 mt-4">
+            <CurrencyExchange/>
+            </div>
 
 
-            {/* <div className="mt-3">
-              <RightInfoIcons />
-            </div> */}
+
                 </div>
                 </div>
 

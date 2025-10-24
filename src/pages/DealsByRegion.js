@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import MainLayout from '../components/MainLayout';
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 
 
@@ -27,7 +27,7 @@ export default function DealsByRegion() {
         // console.log("Fetching for:", countryParam);
 
         const response = await fetch(
-          `http://localhost:5000/round-trip-flight-deals?country=${countryParam}`
+          `${API_BASE}/round-trip-deals?country=${countryParam}`
         );
         const data = await response.json();
         // console.log("API response:", data);

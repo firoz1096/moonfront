@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function EditTermCondition() {
   const [termInfo, setTermInfo] = useState(null);
@@ -10,7 +11,7 @@ export default function EditTermCondition() {
   useEffect(() => {
     const fetchTermInfo = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/terms-info");
+        const res = await axios.get(`${API_BASE}/terms-info`);
         setTermInfo(res.data);
       } catch (err) {
         console.error("Error fetching Term info:", err);
@@ -30,7 +31,7 @@ export default function EditTermCondition() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/terms-info/${termInfo._id}`,
+        `${API_BASE}/terms-info/${termInfo._id}`,
         termInfo
       );
       alert("Terms and Conditions updated successfully!");

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function PostBlogCategory() {
   const [name, setName] = useState("");
@@ -14,7 +15,7 @@ export default function PostBlogCategory() {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/categories");
+      const res = await axios.get(`${API_BASE}/categories`);
       setCategories(res.data.categories);
     } catch (err) {
       console.error(err);
@@ -45,7 +46,7 @@ export default function PostBlogCategory() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/categories", {
+      const res = await axios.post(`${API_BASE}/categories`, {
         name,
         slug,
       });
@@ -64,7 +65,7 @@ export default function PostBlogCategory() {
     if (!window.confirm("Are you sure you want to delete this category?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/categories/${id}`);
+      await axios.delete(`${API_BASE}/categories/${id}`);
       setCategories(categories.filter((cat) => cat._id !== id));
       setMessage("🗑️ Category deleted successfully!");
     } catch (err) {

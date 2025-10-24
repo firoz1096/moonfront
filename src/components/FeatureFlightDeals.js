@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
+
 export default function FeatureFlightDeals() {
 
   const [activeCountry, setActiveCountry] = useState("India");
@@ -18,7 +21,7 @@ export default function FeatureFlightDeals() {
 
   const fetchDeals = async (country) => {
     try {
-      const res = await axios.get(`http://localhost:5000/flight-deals?country=${country}`);
+      const res = await axios.get(`${API_BASE}/flight-deals?country=${country}`);
       setDeals(res.data);
     } catch (err) {
       console.error("Error fetching deals:", err);
@@ -51,7 +54,7 @@ export default function FeatureFlightDeals() {
                         <div key={deal._id} className="col-lg-3 mb-3">
                           <div className="card h-100">
                             <img
-                              src={`http://localhost:5000${deal.imagePath}`}
+                              src={`${IMAGE_BASE}${deal.imagePath}`}
                               alt={`${deal.fromCity.city} to ${deal.toCity.city}`}
                               className="card-img-top"
                             />
@@ -107,7 +110,7 @@ export default function FeatureFlightDeals() {
                         <div key={deal._id} className="col-lg-3 mb-3">
                           <div className="card h-100">
                             <img
-                              src={`http://localhost:5000${deal.imagePath}`}
+                              src={`${IMAGE_BASE}${deal.imagePath}`}
                               alt={`${deal.fromCity.city} to ${deal.toCity.city}`}
                               className="card-img-top"
                             />
@@ -162,7 +165,7 @@ export default function FeatureFlightDeals() {
                         <div key={deal._id} className="col-lg-3 mb-3">
                           <div className="card h-100">
                             <img
-                              src={`http://localhost:5000${deal.imagePath}`}
+                              src={`${IMAGE_BASE}${deal.imagePath}`}
                               alt={`${deal.fromCity.city} to ${deal.toCity.city}`}
                               className="card-img-top"
                             />

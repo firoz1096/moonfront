@@ -7,13 +7,11 @@ import { BsWhatsapp } from "react-icons/bs";
 import axios from "axios";
 import CustomInputField from "../components/controls/CustomInputField";
 import Spinner from "../components/Spinner";
-import { useAuth } from "../auth/AuthContext";
-import { Link } from 'react-router-dom';
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
 export default function ContactUs() {
 
-const { user } = useAuth(); // from AuthProvider
 
 const [contactInfo, setContactInfo] = useState(null);
 const [loading, setLoading] = useState(true);
@@ -65,7 +63,7 @@ const validate = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/post-contact-enquiry",
+        `${API_BASE}/contact-enquiry`,
         formData
       );
 
@@ -112,7 +110,7 @@ Message: ${formData.message}`;
 useEffect(() => {
   const fetchContactInfo = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/contact-info");
+      const res = await axios.get(`${API_BASE}/contact-info`);
       setContactInfo(res.data);
     } catch (err) {
       console.error("Error fetching contact info:", err);
@@ -154,13 +152,6 @@ useEffect(() => {
 
             </div>
 
-            {user && (
-        <div className="text-end mt-4">
-          <Link className="btn btn-warning" to="/edit-contact">
-            Edit 
-          </Link>
-        </div>
-      )}
                 <div className="container mt-5 mb-5">
                     <div className="row">
                 <div className="col-lg-6">

@@ -2,8 +2,8 @@ import TravelDealCard from '../components/TravelDealCard';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-
-
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
 export default function FeaturedHolidayDeals() {
 
 const [deals, setDeals] = useState([]);
@@ -12,7 +12,7 @@ const [deals, setDeals] = useState([]);
   useEffect(() => {
     const fetchDeals = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/holiday-deals");
+        const res = await axios.get(`${API_BASE}/holiday-deals`);
         setDeals(res.data);
       } catch (error) {
         console.error("Error fetching deals:", error);
@@ -55,7 +55,7 @@ const [deals, setDeals] = useState([]);
                 noOfDays={deal.noOfDays}
                 title={deal.title}
                 shortDes={deal.shortDes}
-                thumbnail={`http://localhost:5000${deal.thumbnail}`} // prepend if path starts with /uploads
+                thumbnail={`${IMAGE_BASE}${deal.thumbnail}`} // prepend if path starts with /uploads
                 />
       </Link>
                 </div>

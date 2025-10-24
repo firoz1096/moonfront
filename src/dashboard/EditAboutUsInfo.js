@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
 
 export default function EditAboutUsInfo() {
   const [aboutInfo, setAboutInfo] = useState(null);
@@ -11,7 +13,7 @@ export default function EditAboutUsInfo() {
   useEffect(() => {
     const fetchTermInfo = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/about-info");
+        const res = await axios.get(`${API_BASE}/about-info`);
         setAboutInfo(res.data);
       } catch (err) {
         console.error("Error fetching Term info:", err);
@@ -31,7 +33,7 @@ export default function EditAboutUsInfo() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/about-info/${aboutInfo._id}`,
+        `${API_BASE}/about-info/${aboutInfo._id}`,
         aboutInfo
       );
       alert("About Us updated successfully!");

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import subscribe_bg from "../assets/images/flight-taking-off.jpg";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
+
 export default function SubscribeSection() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
@@ -32,7 +34,7 @@ export default function SubscribeSection() {
     setMessage(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/subscribe", {
+      const res = await fetch(`${API_BASE}/subscribe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
