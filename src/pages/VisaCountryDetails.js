@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import MainLayout from "../components/MainLayout";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import EnquiryForm from "../components/EnquiryForm";
 import Accordion from "react-bootstrap/Accordion";
 import { PiFileDuotone } from "react-icons/pi";
 import { FaArrowRight } from "react-icons/fa6";
 import { IoCloseSharp } from "react-icons/io5";
 import VisaApplyForm from "../components/VisaApplyForm";
+import CallRequestForm from "../components/CallRequestForm";
 
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
@@ -85,17 +85,10 @@ const VisaCountryDetails = () => {
               </div>
 
               <div className="col-md-6 text-end">
-                <div className="d-flex justify-content-end align-items-center">
-                  <div>
-                    <h5>£{minFee} / per person</h5>
-                  </div>
-                  <div>
-                    <EnquiryForm
-                      buttonTitle="Enquiry Now"
-                      tripName={country + " Visa"}
-                    />
-                  </div>
-                </div>
+
+                <div>Starting from</div>
+                  <h4>£{minFee} /-</h4>
+            
               </div>
             </div>
           </div>
@@ -103,7 +96,7 @@ const VisaCountryDetails = () => {
       </div>
 
       {/* --- Visa Info Section --- */}
-      <div className="container">
+      <div className="container mb-3">
 
 
                 <div className="row">
@@ -260,10 +253,22 @@ const VisaCountryDetails = () => {
 
               <div className="col-lg-4 mt-4">
 
-                 <VisaApplyForm visaTypes={visaTypes} country={country} />
+                 <div>
+                  <VisaApplyForm visaTypes={visaTypes} country={country} />
+                  
+                  </div>
 
-              </div>
+
+                 <div className="py-4">
+                   <CallRequestForm callFor={country + " Visa"} product="Visa" />
+                 </div>
+
                 </div>
+
+
+           
+
+          </div>
        
     
    

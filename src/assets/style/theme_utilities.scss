@@ -114,22 +114,22 @@ border: solid 1px $pr-base!important;
 .custom-accordion {
 
 .accordion-item {
-  border: 1px solid $pr-base;
+  border: 1px solid $dark-base;
   border-radius: 10px;
   margin-bottom: 10px;
   overflow: hidden;
-  background-color: $pr-base;
+  background-color: $dark-base;
 }
 
 .accordion-button {
-  background-color: $pr-base; /* Bootstrap primary color */
+  background-color: $dark-base;
   color: white;
   font-weight: 500;
   padding: 12px 18px;
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background-color: $pr-base;
+    background-color: $dark-base;
   }
 
   &:focus { 
@@ -155,7 +155,7 @@ border: solid 1px $pr-base!important;
 
 /* When the accordion is open (active state) */
 .custom-accordion .accordion-button:not(.collapsed) {
-  background-color: $pr-base;
+  background-color: $dark-base;
   color: #fff;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
 }

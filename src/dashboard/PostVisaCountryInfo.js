@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MainLayout from "../components/MainLayout";
 import axios from "axios";
 import UploadImage from "../multer/UploadImage";
 import JoditEditor from "jodit-react";
+import { Link } from "react-router-dom";
+import { MdKeyboardArrowRight } from "react-icons/md";
+
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 const IMAGE_BASE = process.env.REACT_APP_IMAGE_BASE || "http://localhost:5000";
@@ -158,8 +161,18 @@ const editorConfig = {
       <MainLayout>
     <div className="container py-4">
       <div className="row justify-content-center">
-         <h3 className="mb-4">Add Visa Information</h3>
-        <div className="col-lg-12">
+        
+        <div className="col-lg-6">
+
+           <h3>Create Country </h3>
+        </div>
+
+        <div className="col-lg-6 text-end">
+           <Link className="text-primary text-decoration-none" to="/visa-country-queue"> <MdKeyboardArrowRight />
+ Country Queue</Link>
+        </div>
+
+        <div className="col-lg-12 mt-4">
           <div>
        
             <div>

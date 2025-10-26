@@ -7,6 +7,8 @@ import PostRoundTripDeals from "../dashboard/PostRoundTripDeals";
 import PostHolidayDeals from "../dashboard/PostHolidayDeals";
 import PostUmrahDeals from "../dashboard/PostUmrahDeals";
 import PostBlog from "../dashboard/PostBlog";
+import PostVisaCountryInfo from "../dashboard/PostVisaCountryInfo";
+import PostVisaType from "../dashboard/PostVisaType";
 import PostBlogCategory from "../dashboard/PostBlogCategory";
 import EditBlogPost from "../dashboard/EditBlogPost";
 import EditContactInfo from "../dashboard/EditContactInfo";
@@ -17,12 +19,17 @@ import RoundTripDealsQueue from "../dashboard/queue/RoundTripDealsQueue";
 import FlightDealsQueue from "../dashboard/queue/FlightDealsQueue";
 import HolidayDealsQueue from "../dashboard/queue/HolidayDealsQueue";
 import UmrahDealsQueue from "../dashboard/queue/UmrahDealsQueue";
-
+import VisaCountryInfoQueue from "../dashboard/queue/VisaCountryInfoQueue";
+import VisaTypesQueue from "../dashboard/queue/VisaTypesQueue";
+import VisaDealsQueue from "../dashboard/queue/VisaDealsQueue";
+import CallRequestQueue from "../dashboard/queue/CallRequestQueue";
 //update
 import UpdateFlightDeal from "../dashboard/UpdateFlightDeal";
 import UpdateRoundTripDeal from "../dashboard/UpdateRoundTripDeal";
 import UpdateHolidayDeal from "../dashboard/UpdateHolidayDeal";
 import UpdateUmrahDeal from "../dashboard/UpdateUmrahDeal";
+
+
 
 
 
@@ -221,6 +228,72 @@ export default function AdminRoutes() {
           </PrivateRoute>
         }
       />
+
+
+
+
+
+ <Route path="/post-visa-deals" 
+       element={
+          <PrivateRoute>
+            <PostVisaType />
+          </PrivateRoute>
+        }
+ />
+
+
+
+
+
+  <Route path="/visa-deals-queue" 
+  element={
+          <PrivateRoute>
+            <VisaTypesQueue />
+          </PrivateRoute>
+        }
+  />
+  
+  
+  <Route path="/edit-visa-deals-queue" 
+  element={
+            <PrivateRoute>
+              <VisaDealsQueue />
+            </PrivateRoute>
+          } 
+  />
+
+
+        <Route path="/post-visa-country-info" 
+        element={
+          <PrivateRoute>
+            <PostVisaCountryInfo />
+          </PrivateRoute>
+        }
+        
+        />
+
+
+ <Route path="/visa-country-queue" 
+element={
+          <PrivateRoute>
+            <VisaCountryInfoQueue />
+          </PrivateRoute>
+      }
+ 
+ />
+
+
+  <Route path="/call-request-queue" 
+element={
+          <PrivateRoute>
+            <CallRequestQueue />
+          </PrivateRoute>
+      }
+ 
+ />
+
+
+
     </>
   );
 }

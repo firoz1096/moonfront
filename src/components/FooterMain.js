@@ -17,11 +17,34 @@ export default function FooterMain() {
 const [contactInfo, setContactInfo] = useState(null);
 const [loading, setLoading] = useState(true);
 
+// useEffect(() => {
+//   const fetchContactInfo = async () => {
+//     try {
+//       const res = await axios.get(`${API_BASE}/contact-info`);
+//       setContactInfo(res.data);
+//     } catch (err) {
+//       console.error("Error fetching contact info:", err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+//   fetchContactInfo();
+// }, []);
+
+
 useEffect(() => {
+  const cached = localStorage.getItem("contactInfo");
+  if (cached) {
+    setContactInfo(JSON.parse(cached));
+    setLoading(false);
+    return;
+  }
+
   const fetchContactInfo = async () => {
     try {
       const res = await axios.get(`${API_BASE}/contact-info`);
       setContactInfo(res.data);
+      localStorage.setItem("contactInfo", JSON.stringify(res.data));
     } catch (err) {
       console.error("Error fetching contact info:", err);
     } finally {
@@ -30,6 +53,7 @@ useEffect(() => {
   };
   fetchContactInfo();
 }, []);
+
 
 
   return (
@@ -83,6 +107,7 @@ useEffect(() => {
 <li><Link to='/flights'>Flights</Link></li>
 <li><Link to='/hotels'>Hotels</Link></li>
 <li><Link to='/holidays'>Holidays</Link></li>
+<li><Link to='/visa'>Visa</Link></li>
 <li><Link to='/umrah-packages'>Umrah Packages</Link></li>
 </ul>
    
@@ -94,7 +119,7 @@ useEffect(() => {
 <div className='mb-4'>     
 <h6>Contact</h6>
 
-<ul>
+{/* <ul>
 {loading ? (
   <Spinner />
   ) : contactInfo ? (
@@ -125,7 +150,38 @@ useEffect(() => {
 ) : (
 <p className="text-danger">Failed to load contact info.</p>
 )}
-</ul>
+</ul> */}
+
+
+{loading && !contactInfo ? (
+  <Spinner />
+) : (
+  <ul>
+   <>
+<li><FiPhoneCall /> {contactInfo.phone}</li>
+<li><FiMail /> {contactInfo.email}</li>
+<li><FiMapPin /> {contactInfo.address}</li>
+<li><BsBuilding /> Walk-Ins Welcome. {contactInfo.workingHours}</li>
+
+<li className="mt-3 social_icons"> 
+  <Link target="_blank" to={contactInfo.facebookUrl}><FiFacebook /> </Link> 
+  <Link target="_blank" to={contactInfo.twitterUrl}><FiTwitter /> </Link> 
+  <Link target="_blank" to={contactInfo.instagramUrl}><FiInstagram /> </Link> 
+  <Link target="_blank" to={contactInfo.tiktokUrl}><PiTiktokLogoLight /> </Link>
+  
+  {contactInfo?.youtubeUrl && (
+  <Link target="_blank" to={contactInfo.youtubeUrl}><FiYoutube /></Link>
+)}
+
+  {contactInfo?.linkedinUrl && (
+  <Link target="_blank" to={contactInfo.linkedinUrl}><FiLinkedin /> </Link>
+)}
+  
+
+</li>
+</>
+  </ul>
+)}
 
 
     

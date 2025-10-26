@@ -104,10 +104,7 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
   };
 
   return (
-    <div
-      className="visa-apply-form p-4 border rounded-3 shadow-sm bg-white"
-      style={{ maxWidth: 380, margin: "auto" }}
-    >
+<div className="p-4 border rounded-3 shadow-sm bg-white">
       <h4 className="fw-bold mb-3">Apply Online</h4>
 
       <div className="alert alert-warning d-flex align-items-center mb-3 py-2 rounded-3">
@@ -119,8 +116,8 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
 
       <form onSubmit={handleSubmit}>
         {/* Email */}
-        <div className="mb-3">
-          <label className="form-label small text-muted">Email ID</label>
+        <div className="mb-2">
+          <label className="form-label">Email ID</label>
           <input
             type="email"
             className={`form-control ${
@@ -133,8 +130,8 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
         </div>
 
         {/* Contact */}
-        <div className="mb-3">
-          <label className="form-label small text-muted">Contact No.</label>
+        <div className="mb-2">
+          <label className="form-label">Contact No.</label>
           <input
             type="text"
             className={`form-control ${
@@ -147,8 +144,8 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
         </div>
 
         {/* Visa Type Dropdown */}
-        <div className="mb-3">
-          <label className="form-label small text-muted">Visa Type</label>
+        <div className="mb-2">
+          <label className="form-label">Visa Type</label>
           <select
             className={`form-select ${
               errors.visa ? "is-invalid" : selectedVisa ? "is-valid" : ""
@@ -167,8 +164,8 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
         </div>
 
         {/* Number of Travelers */}
-        <div className="mb-3">
-          <label className="form-label small text-muted">No. of Travelers</label>
+        <div className="mb-2">
+          <label className="form-label">No. of Travelers</label>
           <select
             className="form-select"
             value={adults}
@@ -201,7 +198,7 @@ export default function VisaApplyForm({ visaTypes = [], country = "" }) {
         {/* Apply Button */}
         <button
           type="submit"
-          className="btn btn-success w-100 py-2 fw-bold"
+          className="btn btn-success w-100 py-3 fw-bold"
           disabled={loading}
         >
           {loading ? "Submitting..." : "APPLY NOW"}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000/api";
 
@@ -119,7 +121,20 @@ useEffect(() => {
 
   return (
     <div className="container my-5">
-      <h2 className="mb-4 text-primary fw-semibold">Create Visa Type</h2>
+      
+      <div className="row align-items-center mb-4">
+        <div className="col-lg-6">
+          <h2 className="text-primary fw-semibold">Create Visa</h2>
+        </div>
+
+         <div className="col-lg-6">
+         
+         <Link to="/post-visa-country-info" className="btn btn-outline-primary float-end">
+          Create Country
+         </Link>
+
+         </div>
+      </div>
 
       {message && (
         <div className={`alert ${isSuccess ? "alert-success" : "alert-danger"}`} role="alert">

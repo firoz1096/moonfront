@@ -68,7 +68,7 @@ const VisaTypesQueue = () => {
       <MainLayout>  
 
     <div className="container mt-4">
-      <h3 className="mb-4">Visa Type Management</h3>
+      <h3 className="mb-4">Visa Deals Queue</h3>
 
       {loading ? (
         <div className="text-center py-5">
@@ -87,7 +87,7 @@ const VisaTypesQueue = () => {
               <table className="table table-bordered table-striped">
                 <thead className="table-light">
                   <tr>
-                    <th>Title</th>
+                    <th>Visa Type</th>
                     <th>Processing Time</th>
                     <th>Stay Period</th>
                     <th>Validity</th>
@@ -152,7 +152,7 @@ const VisaTypesQueue = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label>Visa Type</Form.Label>
                   <Form.Control
                     type="text"
                     name="title"

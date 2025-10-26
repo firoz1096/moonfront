@@ -79,7 +79,7 @@ export default function MainHeader() {
           <div className='col-lg-10 col-12'>
             <div ref={navRef} className={`navbar_collapse ${showNavbar ? "showMenuinMobile" : ""}`}>
               <div className='row align-items-center'>
-                <div className='col-lg-9 col-12'>
+                <div className={`col-12 ${user ? "col-lg-12" : "col-lg-9"}`}>
                   <ul className='navbar_ul'>
 
                     <li className={`nav_item ${isActive("/flights")}`}>
@@ -110,14 +110,20 @@ export default function MainHeader() {
                     </li>
 
                     {/* Company submenu */}
-                    <li
+
+
+                      {!user && (
+                      <li
                       className='nav_item hide_mobile cursor-pointer'
                       ref={RefCompany}
                       onClick={() => setIsCompanyMenu(prev => !prev)}
-                    >
+                      >
                       About {isCompanyMenu ? <FiChevronUp className='text-primary' /> : <FiChevronDown />}
                       {isCompanyMenu && <AboutMenu />}
-                    </li>
+                      </li>
+                      )}
+
+                
 
                     {/* User Links */}
                     {user && (

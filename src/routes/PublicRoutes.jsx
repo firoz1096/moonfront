@@ -17,13 +17,11 @@ import TermConditions from "../pages/TermConditions";
 import AboutUs from "../pages/AboutUs";
 import LoginPage from "../auth/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
-import PostVisaCountryInfo from "../dashboard/PostVisaCountryInfo";
-import PostVisaType from "../dashboard/PostVisaType";
+
+
 import VisaAssistance from "../pages/VisaAssistance";
 import VisaCountryDetails from "../pages/VisaCountryDetails";
-import VisaCountryInfoQueue from "../dashboard/queue/VisaCountryInfoQueue";
-import VisaTypesQueue from "../dashboard/queue/VisaTypesQueue";
-import VisaDealsQueue from "../dashboard/queue/VisaDealsQueue";
+
 
 
 
@@ -60,11 +58,9 @@ export default function PublicRoutes() {
       <Route path="/login" element={<LoginPage />} />
 
      <Route path="*" element={<NotFoundPage />} />
-       <Route path="/post-visa-country-info" element={<PostVisaCountryInfo />} />
-        <Route path="/post-visa-type" element={<PostVisaType />} />
-      <Route path="/edit-visa-country-info" element={<VisaCountryInfoQueue />} />
-      <Route path="/edit-visa-type" element={<VisaTypesQueue />} />
-      <Route path="/edit-visa-deals-queue" element={<VisaDealsQueue />} />
+     
+      
+     
 
     </>
   );
