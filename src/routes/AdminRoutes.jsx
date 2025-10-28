@@ -28,6 +28,7 @@ import UpdateFlightDeal from "../dashboard/UpdateFlightDeal";
 import UpdateRoundTripDeal from "../dashboard/UpdateRoundTripDeal";
 import UpdateHolidayDeal from "../dashboard/UpdateHolidayDeal";
 import UpdateUmrahDeal from "../dashboard/UpdateUmrahDeal";
+import EditVisaCountryInfo from "../dashboard/EditVisaCountryInfo";
 
 
 
@@ -291,6 +292,21 @@ element={
       }
  
  />
+
+
+
+  <Route path="/edit-visa-country-info/:id" 
+element={
+          <PrivateRoute>
+             <EditVisaCountryInfo />
+          </PrivateRoute>
+      }
+ 
+ />
+
+
+
+
 
 
 

@@ -7,11 +7,12 @@ import { ReactComponent as HolidaysIcon } from '../assets/images/svg/holidays.sv
 import { ReactComponent as UmrahIcon } from '../assets/images/svg/umrah.svg';
 import { ReactComponent as VisaIcon } from '../assets/images/svg/visa.svg';
 
-import { FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+// import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import { RiMenu3Fill } from "react-icons/ri";
 import { useState, useRef, useEffect } from "react";
 import PhoneNumber from './PhoneNumber';
-import AboutMenu from './Menu/AboutMenu';
+// import AboutMenu from './Menu/AboutMenu';
 import { useAuth } from "../auth/AuthContext";
 
 export default function MainHeader() {
@@ -19,10 +20,10 @@ export default function MainHeader() {
   const location = useLocation();
 
   const [showNavbar, setShowNavbar] = useState(false);
-  const [isCompanyMenu, setIsCompanyMenu] = useState(false);
+  // const [isCompanyMenu, setIsCompanyMenu] = useState(false);
 
   const navRef = useRef(null);
-  const RefCompany = useRef(null);
+  // const RefCompany = useRef(null);
 
   // Close mobile navbar on route change
   useEffect(() => {
@@ -30,15 +31,15 @@ export default function MainHeader() {
   }, [location.pathname]);
 
   // Handle outside click for company menu
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (RefCompany.current && !RefCompany.current.contains(event.target)) {
-        setIsCompanyMenu(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside, true);
-    return () => document.removeEventListener("click", handleClickOutside, true);
-  }, []);
+  // useEffect(() => {
+  //   const handleClickOutside = (event) => {
+  //     if (RefCompany.current && !RefCompany.current.contains(event.target)) {
+  //       setIsCompanyMenu(false);
+  //     }
+  //   };
+  //   document.addEventListener("click", handleClickOutside, true);
+  //   return () => document.removeEventListener("click", handleClickOutside, true);
+  // }, []);
 
   // Toggle mobile menu
   const toggleMobileMenu = () => setShowNavbar(prev => !prev);
@@ -112,7 +113,7 @@ export default function MainHeader() {
                     {/* Company submenu */}
 
 
-                      {!user && (
+                      {/* {!user && (
                       <li
                       className='nav_item hide_mobile cursor-pointer'
                       ref={RefCompany}
@@ -121,7 +122,7 @@ export default function MainHeader() {
                       About {isCompanyMenu ? <FiChevronUp className='text-primary' /> : <FiChevronDown />}
                       {isCompanyMenu && <AboutMenu />}
                       </li>
-                      )}
+                      )} */}
 
                 
 

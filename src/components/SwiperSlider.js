@@ -57,6 +57,19 @@ const SwiperSlider = () => {
         className="mySwiper"
       >
       
+      <SwiperSlide>
+
+
+
+  <picture>
+
+
+  <source media="(max-width:576px)" srcSet={slidermb3} />
+  <img className='img-fluid' src={slider3} alt="Flowers"/>
+</picture>
+
+      </SwiperSlide>
+
       <SwiperSlide>   
 
           <picture>
@@ -78,18 +91,7 @@ const SwiperSlider = () => {
 
       </SwiperSlide>
 
-      <SwiperSlide>
-
-
-
-  <picture>
-
-
-  <source media="(max-width:576px)" srcSet={slidermb3} />
-  <img className='img-fluid' src={slider3} alt="Flowers"/>
-</picture>
-
-      </SwiperSlide>
+    
 
 
       </Swiper>
