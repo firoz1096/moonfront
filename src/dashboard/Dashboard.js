@@ -42,7 +42,7 @@ function Dashboard() {
           axios.get(`${API_BASE}/round-trip-deals`),
           axios.get(`${API_BASE}/holiday-deals`),
           axios.get(`${API_BASE}/umrah-deals`),
-          axios.get(`http://localhost:5000/api/visa-info-country`),
+           axios.get(`${API_BASE}/visa-info-country`),
         ]);
 
         setCountFlightDeals(flight.data.length);

@@ -1,8 +1,12 @@
 .main_header {
-
+display: block;
   background-color:$light-base;
-  padding: 8px 0; 
-  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+  padding: 10px 0; 
+   @include media-breakpoint-down(md) { 
+    height: 64px;
+   }
+  display: block;
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(10px);
   position: relative;
   z-index: 6;
@@ -11,7 +15,9 @@
         height: 54px;
 
          @include media-breakpoint-down(md) { 
-        height: 44px;
+        height: 40px;
+       
+   
          }
     }
 

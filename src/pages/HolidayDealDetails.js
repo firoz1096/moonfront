@@ -7,7 +7,13 @@ import { FaLocationDot } from "react-icons/fa6";
 // import RightInfoIcons from '../components/RightInfoIcons';
 import { Spinner } from "react-bootstrap";
 import EnquiryForm from '../components/EnquiryForm';
-import CurrencyExchange from '../components/CurrencyExchange';
+// import CurrencyExchange from '../components/CurrencyExchange';
+import CurrencyExchangeDyn from '../components/CurrencyExchnageDyn';
+import { currencyToCountryName } from "../data/currencyToCountryName";
+
+
+
+
 
 
   // 👉 Use env vars (better than hardcoding)
@@ -17,6 +23,13 @@ const WEATHER_KEY = process.env.REACT_APP_WEATHER_KEY || "";
 
 
 export default function HolidayDealDetails() {
+const getCurrencyFromCountry = (country) => {
+  const entry = Object.entries(currencyToCountryName).find(
+    ([code, name]) => name.toLowerCase() === country.toLowerCase()
+  );
+  return entry ? entry[0] : "USD";
+};
+
 
 
   const { id } = useParams();
@@ -176,7 +189,10 @@ useEffect(() => {
             
 
              <div className="card shadow-sm p-3 mt-4">
-            <CurrencyExchange/>
+           <CurrencyExchangeDyn
+  defaultFrom={getCurrencyFromCountry(deal.country)}
+  defaultTo="INR"
+/>
             </div>
 
 

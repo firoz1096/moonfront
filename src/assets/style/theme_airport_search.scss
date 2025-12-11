@@ -444,6 +444,9 @@ border-color: #ccc;
    background-position: center;
    background-repeat: no-repeat;
    height: 300px;
+     @media (max-width: 768px) { 
+      height: inherit;
+     }
   
   .wrapper {
     background: rgba(2, 2, 2, 0.8);

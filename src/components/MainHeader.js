@@ -6,6 +6,10 @@ import { ReactComponent as HotelsIcon } from '../assets/images/svg/hotels.svg';
 import { ReactComponent as HolidaysIcon } from '../assets/images/svg/holidays.svg';
 import { ReactComponent as UmrahIcon } from '../assets/images/svg/umrah.svg';
 import { ReactComponent as VisaIcon } from '../assets/images/svg/visa.svg';
+import { ReactComponent as ActivitiesIcon } from '../assets/images/svg/sightseeing.svg';
+import { ReactComponent as BlogIcon } from '../assets/images/svg/blog.svg';
+import { ReactComponent as CompanyIcon } from '../assets/images/svg/company.svg';
+import { ReactComponent as ContactIcon } from '../assets/images/svg/contact.svg';
 
 // import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
@@ -64,8 +68,8 @@ export default function MainHeader() {
           <div className='col-lg-2 col-12'>
             <div className='row align-items-center'>
               <div className='col-9'>
-                <Link to="/" className='me-3' onClick={handleLinkClick}>
-                  <img className='logo' src={logo} alt='Logo' />
+                <Link to="/" onClick={handleLinkClick}>
+                  <img className='logo me-3' src={logo} alt='Logo' />
                 </Link>
               </div>
               <div className='col-3'>
@@ -83,14 +87,19 @@ export default function MainHeader() {
                 <div className={`col-12 ${user ? "col-lg-12" : "col-lg-9"}`}>
                   <ul className='navbar_ul'>
 
-                    <li className={`nav_item ${isActive("/flights")}`}>
+                  <li className={`nav_item ${(isActive("/flights") || isActive("/"))}`}>
                       <Link to="/flights" onClick={handleLinkClick}> <FlightsIcon className="h_icon"/>Flights</Link>
                     </li>
                     <li className={`nav_item ${isActive("/hotels")}`}>
                       <Link to="/hotels" onClick={handleLinkClick}> <HotelsIcon className="h_icon"/>Hotels</Link>
                     </li>
+                   
                     <li className={`nav_item ${isActive("/holidays")}`}>
                       <Link to="/holidays" onClick={handleLinkClick}><HolidaysIcon className="h_icon"/>Holidays</Link>
+                    </li>
+
+                    <li className={`nav_item ${isActive("/activities")}`}>
+                      <Link to="/activities" onClick={handleLinkClick}><ActivitiesIcon className="h_icon"/>Activities</Link>
                     </li>
 
                       <li className={`nav_item ${isActive("/visa")}`}>
@@ -98,16 +107,16 @@ export default function MainHeader() {
                     </li>
 
                     <li className={`nav_item ${isActive("/umrah-packages")}`}>
-                      <Link to="/umrah-packages" onClick={handleLinkClick}><UmrahIcon className="h_icon"/>Umrah</Link>
+                      <Link to="/umrah-packages" onClick={handleLinkClick}><UmrahIcon style={{ height:'18px' }} className="h_icon"/>Umrah</Link>
                     </li>
                     <li className={`nav_item hide_desktop ${isActive("/blogs")}`}>
-                      <Link to="/blogs" onClick={handleLinkClick}>Blogs</Link>
+                      <Link to="/blogs" onClick={handleLinkClick}><BlogIcon className="h_icon"/>Blogs</Link>
                     </li>
-                    <li className={`nav_item hide_desktop ${isActive("/company")}`}>
-                      <Link to="/about-us" onClick={handleLinkClick}>About Us</Link>
+                    <li className={`nav_item hide_desktop ${isActive("/about-us")}`}>
+                      <Link to="/about-us" onClick={handleLinkClick}><CompanyIcon className="h_icon"/>About Us</Link>
                     </li>
                     <li className={`nav_item hide_desktop ${isActive("/contact-us")}`}>
-                      <Link to="/contact-us" onClick={handleLinkClick}>Contact Us</Link>
+                      <Link to="/contact-us" onClick={handleLinkClick}><ContactIcon className="h_icon"/>Contact Us</Link>
                     </li>
 
                     {/* Company submenu */}
@@ -143,7 +152,7 @@ export default function MainHeader() {
 
                 {/* Phone Number for guests */}
                 {!user && (
-                  <div className='col-lg-3 col-12'>
+                  <div className='col-lg-3 col-12 mt-3 mt-md-0'>
                     <PhoneNumber />
                   </div>
                 )}
