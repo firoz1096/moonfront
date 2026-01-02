@@ -126,3 +126,19 @@
 .bounce {
   animation: bounce 2s infinite;
 }
+
+
+.foo_bottom {
+ font-size: 0.9rem;
+    color: $light-base;
+
+    a {
+        color: $light-base;
+        text-decoration: none;
+
+        &:hover {
+
+            text-decoration: underline;
+        }
+    }
+}

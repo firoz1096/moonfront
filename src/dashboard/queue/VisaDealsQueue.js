@@ -16,7 +16,7 @@ export default function VisaDealsQueue() {
     visaType: "",
     travellers: 1,
   });
-  const [isEditing, setIsEditing] = useState(false);
+ 
   const [showEditModal, setShowEditModal] = useState(false);
 
   // Delete Modal
@@ -61,7 +61,7 @@ export default function VisaDealsQueue() {
         visaType: "",
         travellers: 1,
       });
-      setIsEditing(false);
+
       setShowEditModal(false);
       fetchEnquiries();
     } catch (err) {
@@ -73,7 +73,7 @@ export default function VisaDealsQueue() {
   // Open edit modal
   const handleEdit = (item) => {
     setFormData(item);
-    setIsEditing(true);
+
     setShowEditModal(true);
     setMessage("");
   };

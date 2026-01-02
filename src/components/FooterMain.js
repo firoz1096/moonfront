@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import logowhite from '../assets/images/logo-white.png';
 import aita from '../assets/images/IATA.png';
 import atol from '../assets/images/atol-3.png';
-import creditcards from '../assets/images/svg/we-accept-cards.svg';
+import creditcards from '../assets/images/we-accept-cards.png';
 import Spinner from "./Spinner";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -91,12 +91,17 @@ useEffect(() => {
 <ul>
 <li><Link to='/about-us'>About Us</Link></li>
 <li><Link to='/contact-us'>Contact Us</Link></li>
-<li><Link to='/blogs'>Blogs</Link></li>
+{/* <li><Link to='/blogs'>Blogs</Link></li> */}
 <li><Link to='/terms-and-conditions'>Terms and Conditions</Link></li>
 {/* <li><Link to='/privacy-policy'>Privacy Policy</Link></li>
 <li><Link to='/cookie-policy'>Cookie Policy</Link></li> */}
 </ul>
 
+<div className="d-flex align-items-center gap-3 mt-3 mb-4">
+  <div><img style={{height:'30px'}} src={aita} alt="" /> </div>
+  <div><img  style={{height:'30px'}} src={atol} alt="" /></div>
+</div>
+   <img style={{height:'24px'}} src={creditcards} alt="" /> 
 </div>
 
 
@@ -110,7 +115,7 @@ useEffect(() => {
 <li><Link to='/visa'>Visa</Link></li>
 <li><Link to='/umrah-packages'>Umrah Packages</Link></li>
 </ul>
-   
+ 
 </div>
 
 
@@ -206,24 +211,18 @@ useEffect(() => {
 
 <div className='container'>
 
-<div className='row align-items-center'>
-  <div className='col-lg-6 order-md-1 footer_mini_icons'> 
-    
-    <div className="row align-items-center">
-      <div className="col-lg-4 col-6 mb-3 mb-md-0"><img style={{height:'34px'}} src={aita} alt="" /> </div>
-        <div className="col-lg-4 col-6 mb-3 mb-md-0"> <img  style={{height:'34px'}} src={atol} alt="" /> </div>
-       <div className="col-lg-4 col-12 mb-3 mb-md-0"> <img style={{height:'24px'}} src={creditcards} alt="" /> </div>
-    </div> 
-</div>
 
-<div className='col-lg-6  mb-2 mb-md-0'> <span className='copyright'>Copyright © 2025 Moon Travel. All rights reserved.
+       <div className="row align-items-center foo_bottom">
+            <div className="col-lg-6">
+               
+           <p className="mb-0"> © {new Date().getFullYear()} Moon Travel. All Rights Reserved. </p>
+             
+            </div>
 
-</span></div>
-
-
-
-
-</div>
+             <div className="col-lg-6 text-lg-end">
+            <p className="mb-0">Designed & Developed by <Link target="_blank" to="https://www.firozdev.com/">FIROZ DEV.</Link></p>
+             </div>
+        </div>
 </div>
 
 </section>
